@@ -1,0 +1,13 @@
+{
+  "name": "~can.crm-components",
+  "version": "0.0.1",
+  "description": "crm-components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vincent Wen",
+  "license": "ISC",
+  "dependencies": {
+  }
+}

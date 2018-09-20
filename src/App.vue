@@ -1,25 +1,110 @@
+<style lang="stylus" scoped>
+@import '../packages/crm-bc/stylus/index.styl'
+
+.app-view
+  overflow-y hidden
+
+  &__container
+    width 1140px
+    padding 0
+    margin 0 auto
+    height 100%
+    box-sizing border-box
+
+  &__logo
+    font-size $fs-xxl
+    color $color-blue2
+    float left
+
+  &__nav
+    float right
+
+  &__header-wrapper
+    position fixed
+    left 0
+    right 0
+    top 0
+    z-index 2000
+    // border-bottom 1px solid $color-grey5
+
+  &__header
+    height 60px
+    background-color $color-white
+    position relative
+    line-height 60px
+    width 100%
+    top 0
+    left 0
+
+  &__body-wrapper
+    padding 0
+    margin-top 0
+    height 100%
+    min-height auto
+
+  &__body
+    height calc(100% - 60px)
+    margin-top 60px
+
+  .sdk
+    &-scrollbar
+      position relative
+      overflow hidden
+
+      &__warp
+        overflow scroll
+        overflow-x auto
+        height 100%
+
+    &-component
+
+      &__menu
+        width 240px
+        position fixed
+        top 0
+        bottom 0
+        margin-top 60px
+        margin-left -20px
+        padding-top 20px
+        transition padding-top .3s
+        // border-right 1px solid $color-grey5
+
+        &--title
+          margin-left 20px
+
+      &__content
+        padding-top 20px
+        padding-left 270px
+        padding-bottom 100px
+        box-sizing border-box
+</style>
+
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app" class="app-view">
+    <div class="app-view__header-wrapper">
+      <header class="app-view__header">
+        <div class="app-view__container">
+          <h1 class="app-view__logo">CRM SDK</h1>
+          <div class="app-view__nav">
+            <header-nav />
+          </div>
+        </div>
+      </header>
     </div>
-    <router-view/>
+    <div class="app-view__body-wrapper">
+      <div class="app-view__body sdk-scrollbar">
+        <div class="sdk-scrollbar__warp">
+          <div class="app-view__container sdk-component">
+            <div class="sdk-component__menu">
+              <h4 class="sdk-component__menu--title">组件</h4>
+              <sdk-menu/>
+            </div>
+            <div class="sdk-component__content">
+              <router-view/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-<style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-
-#nav
-  padding 30px
-  a
-    font-weight bold
-    color #2c3e50
-    &.router-link-exact-active
-      color #42b983
-</style>

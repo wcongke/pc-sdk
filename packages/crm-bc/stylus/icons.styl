@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'medical-appt';  /* project id 518820 */
+  src: url('//at.alicdn.com/t/font_518820_y741m8xvfhl.eot');
+  src: url('//at.alicdn.com/t/font_518820_y741m8xvfhl.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_518820_y741m8xvfhl.woff') format('woff'),
+  url('//at.alicdn.com/t/font_518820_y741m8xvfhl.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_518820_y741m8xvfhl.svg#medical-appt') format('svg');
+}
+
+.ma-icon
+  direction: ltr;
+  display: inline-block;
+  font: normal normal normal $fs-xxxl "medical-appt";
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-rendering: auto;
+  text-transform: none;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &::before
+    font-size: $fs-xxxl
+
+  &--edit::before
+    content "\e63e"
+
+  &--down::before
+    content "\e6ea"
+  
+  &--calendar::before
+    content: "\e7f0"
+
+  &--success::before
+    content "\e607"
+
