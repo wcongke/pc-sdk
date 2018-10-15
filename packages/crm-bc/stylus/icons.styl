@@ -1,16 +1,16 @@
 @font-face {
-  font-family: 'crm';  /* project id 847196 */
-  src: url('//at.alicdn.com/t/font_847196_pirpnldb878.eot');
-  src: url('//at.alicdn.com/t/font_847196_pirpnldb878.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_847196_pirpnldb878.woff') format('woff'),
-  url('//at.alicdn.com/t/font_847196_pirpnldb878.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_847196_pirpnldb878.svg#crm') format('svg');
+  font-family: 'medical-appt';  /* project id 518820 */
+  src: url('//at.alicdn.com/t/font_518820_c6cgpw3grh.eot');
+  src: url('//at.alicdn.com/t/font_518820_c6cgpw3grh.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_518820_c6cgpw3grh.woff') format('woff'),
+  url('//at.alicdn.com/t/font_518820_c6cgpw3grh.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_518820_c6cgpw3grh.svg#medical-appt') format('svg');
 }
 
-.crm-icon
+.ma-icon
   direction: ltr;
   display: inline-block;
-  font: normal normal normal $fs-xxxl "crm";
+  font: normal normal normal $fs-xxxl "medical-appt";
   font-size: inherit;
   line-height: inherit;
   letter-spacing: normal;
@@ -25,13 +25,18 @@
   &::before
     font-size: $fs-xxxl
 
-  &--qq::before
-    content "\e6db"
+  &--edit::before
+    content "\e63e"
 
-  &--wechat::before
-    content "\e694"
+  &--down::before
+    content "\e6ea"
   
-  &--weibo::before
-    content: "\e61c"
+  &--calendar::before
+    content: "\e7f0"
 
+  &--success::before
+    content "\e607"
+
+  &--info::before
+    content "\e618"
 

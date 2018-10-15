@@ -44,20 +44,20 @@ export default class Ajax {
         headers
       }).then((data) => {
         delete this.cancelRequest[url]
-        if (data.code === 0) {
+        if (data.code === '1') {
           resolve(data.data)
           return
         }
         const e = {
           code: data.code,
-          msg: data.msg
+          msg: data.message
         }
         reject(e)
       }).catch((err) => {
         delete this.cancelRequest[url]
         const e = {
           code: err.code,
-          msg: err.msg,
+          msg: err.message,
           data: err.data
         }
         reject(e)
