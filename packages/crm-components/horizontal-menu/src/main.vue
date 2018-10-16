@@ -35,15 +35,17 @@
       cursor pointer
 
     &__item
-      margin 4px 20px 0
+      margin 0 20px
       text-align center
+      position relative
 
       &--active
-        display block
-        width 20px
+        position absolute
+        width 70%
         height 3px
-        margin 0 auto
-        margin-top 4px
+        left 50%
+        bottom 5px
+        transform translateX(-50%)
         box-shadow 0px 2px 2px rgba(0, 0, 0, .5)
 
       &:focus,
@@ -81,6 +83,7 @@
           <div
             class="horizontal-menu__menu__item"
             :class="{'is-active': item.name === activeIndex}"
+            :style="{height, lineHeight: height}"
             @click="handleSelect(item.name)">
             <span>{{item.text}}</span>
             <span

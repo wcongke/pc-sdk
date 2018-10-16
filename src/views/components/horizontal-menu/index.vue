@@ -8,6 +8,7 @@
 
   &__menu
     padding 0 20px
+    z-index 1000
 
   .mt10
     margin-top 10px
@@ -65,6 +66,10 @@ export default {
         {
           name: '3',
           text: '资源'
+        },
+        {
+          name: '4',
+          text: 'TIPS'
         }
       ],
       /**
