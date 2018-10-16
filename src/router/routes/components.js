@@ -17,6 +17,14 @@ export default [{
         title: '单选框'
       },
       component: () => import('@/views/components/radio/index.vue')
+    },
+    {
+      name: 'components.horizontal-menu',
+      path: '/horizontal-menu',
+      meta: {
+        title: '水平菜单'
+      },
+      component: () => import('@/views/components/horizontal-menu/index.vue')
     }
   ]
 }]
