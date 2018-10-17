@@ -42,11 +42,11 @@
       &--active
         position absolute
         width 70%
-        height 3px
+        height 2px
         left 50%
-        bottom 5px
+        bottom 8px
         transform translateX(-50%)
-        box-shadow 0px 2px 2px rgba(0, 0, 0, .5)
+        box-shadow 0px 1px 6px rgba(0, 0, 0, 0.4)
 
       &:focus,
       &:hover,
