@@ -1,11 +1,15 @@
 <style lang="stylus" scoped>
 .vertical-menu
   display block
+
+  &__el-menu
+    border-right none
 </style>
 
 <template>
   <div class="vertical-menu">
     <el-menu
+      class="vertical-menu__el-menu"
       :style="{width}"
       :default-active="activeIndex"
       :active-text-color="color"
