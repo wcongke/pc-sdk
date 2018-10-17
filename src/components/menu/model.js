@@ -24,6 +24,11 @@ export default (data = {}) => ({
         name: 'components.horizontal-menu',
         text: 'HorizontalMenu 水平菜单',
         disabled: false
+      },
+      {
+        name: 'components.vertical-menu',
+        text: 'VerticalMenu 垂直菜单',
+        disabled: false
       }
     ],
     utils: []

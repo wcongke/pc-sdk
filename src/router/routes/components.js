@@ -25,6 +25,15 @@ export default [{
         title: '水平菜单'
       },
       component: () => import('@/views/components/horizontal-menu/index.vue')
+    },
+    {
+      name: 'components.vertical-menu',
+      path: '/vertical-menu',
+      meta: {
+        title: '垂直菜单'
+      },
+      component: () =>
+        import('@/views/components/vertical-menu/index.vue')
     }
   ]
 }]

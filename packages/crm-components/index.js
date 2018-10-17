@@ -1,9 +1,11 @@
 import Radio from './radio/index'
 import HorizontalMenu from './horizontal-menu/index'
+import VerticalMenu from './vertical-menu/index'
 
 const components = [
   Radio,
-  HorizontalMenu
+  HorizontalMenu,
+  VerticalMenu
 ]
 
 const install = (Vue) => {
