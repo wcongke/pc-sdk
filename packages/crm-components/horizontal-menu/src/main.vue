@@ -82,14 +82,14 @@
         <li v-for="(item, index) in menu" :key="index">
           <div
             class="horizontal-menu__menu__item"
-            :class="{'is-active': item.name === activeIndex}"
+            :class="{'is-active': item.name === active}"
             :style="{height, lineHeight: height}"
-            @click="handleSelect(item.name)">
+            @click="handleSelect(item.name, item.page)">
             <span>{{item.text}}</span>
             <span
               class="horizontal-menu__menu__item--active"
               :style="{backgroundColor: color}"
-              v-if="item.name === activeIndex"></span>
+              v-if="item.name === active"></span>
           </div>
         </li>
       </ul>
@@ -100,7 +100,7 @@
         v-for="(item, index) in iconList"
         :key="index"
         :class="item.icon"
-        @click="handleCommand(item.name)"></i>
+        @click="handleSelect(item.name, item.page)"></i>
 
       <el-dropdown class="horizontal-menu__el-dropdown" @command="handleCommand">
         <span class="el-dropdown-link">
@@ -171,30 +171,40 @@ export default {
     },
     /**
      * 下拉菜单
-     * @type {Object}
+     * @type {Array}
      */
-    dropdown: {
-      type: Object,
-      default: () => {}
+    dropdownMenu: {
+      type: Array,
+      default: () => []
+    },
+    /**
+     * 下拉菜单名称
+     * @type {String}
+     */
+    dropdownName: {
+      type: String,
+      default: ''
     }
   },
-  data () {
-    return {
-      /**
-       * 当前菜单
-       * @type {Number, String}
-       */
-      activeIndex: null
+  computed: {
+    /**
+     * 下拉菜单
+     */
+    dropdown () {
+      return {
+        text: this.dropdownName,
+        menu: this.dropdownMenu
+      }
     }
   },
   methods: {
     /**
      * 选择菜单项
      * @param {Number, String} index - index
+     * @param {String} page - 页面
      */
-    handleSelect (index) {
-      this.activeIndex = index
-      this.$emit('selected', index, 'menu')
+    handleSelect (index, page) {
+      this.$emit('selected', index, page)
     },
     /**
      * 下拉菜单选择
@@ -203,9 +213,6 @@ export default {
     handleCommand (command) {
       this.$emit('selected', command)
     }
-  },
-  created () {
-    this.activeIndex = this.active
   }
 }
 </script>

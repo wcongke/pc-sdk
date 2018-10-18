@@ -11,7 +11,7 @@
     <el-menu
       class="vertical-menu__el-menu"
       :style="{width}"
-      :default-active="activeIndex"
+      :default-active="active"
       :active-text-color="color"
       @select="handleSelect">
       <el-menu-item v-for="(item, index) in menu" :key="index" :index="item.name">
@@ -58,27 +58,14 @@ export default {
       default: null
     }
   },
-  data () {
-    return {
-      /**
-       * 当前菜单
-       * @type {Number, String}
-       */
-      activeIndex: null
-    }
-  },
   methods: {
     /**
      * 选择菜单项
      * @param {Number, String} index - index
      */
     handleSelect (index) {
-      this.activeIndex = index
       this.$emit('selected', index, 'menu')
     }
-  },
-  created () {
-    this.activeIndex = this.active
   }
 }
 </script>
