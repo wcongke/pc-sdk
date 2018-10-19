@@ -38,7 +38,8 @@
             :menu="menu"
             :icon-list="iconList"
             :active="active"
-            :dropdown="dropdown"
+            dropdown-name="小明"
+            :dropdown-menu="dropdownMenu"
             @selected="handleSelect"/>
         </div>
       </el-col>
@@ -57,18 +58,22 @@ export default {
       menu: [
         {
           name: '1',
+          page: '1',
           text: '指南'
         },
         {
           name: '2',
+          page: '2',
           text: '组件'
         },
         {
           name: '3',
+          page: '3',
           text: '资源'
         },
         {
           name: '4',
+          page: '4',
           text: 'TIPS'
         }
       ],
@@ -91,31 +96,26 @@ export default {
        * 下拉菜单
        * @type {Object}
        */
-      dropdown: {
-        text: '小明',
-        menu: [
-          {
-            name: '1',
-            text: '个人中心'
-          },
-          {
-            name: '2',
-            text: '退出'
-          }
-        ]
-      }
+      dropdownMenu: [
+        {
+          name: '1',
+          text: '个人中心'
+        },
+        {
+          name: '2',
+          text: '退出'
+        }
+      ]
     }
   },
   methods: {
     /**
      * 选择菜单
      * @param {Number, String} index - index
-     * @param {String} type - 类型
+     * @param {String} page - 页面
      */
-    handleSelect (index, type) {
-      if (type === 'menu') {
-        this.active = index
-      }
+    handleSelect (index, page) {
+      this.active = index
 
       global.console.log(index)
     }
