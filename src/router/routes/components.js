@@ -34,6 +34,15 @@ export default [{
       },
       component: () =>
         import('@/views/components/vertical-menu/index.vue')
+    },
+    {
+      name: 'components.utils-card',
+      path: '/utils-card',
+      meta: {
+        title: '工具卡片'
+      },
+      component: () =>
+        import('@/views/components/utils-card/index.vue')
     }
   ]
 }]

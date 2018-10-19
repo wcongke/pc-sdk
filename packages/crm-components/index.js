@@ -1,11 +1,13 @@
 import Radio from './radio/index'
 import HorizontalMenu from './horizontal-menu/index'
 import VerticalMenu from './vertical-menu/index'
+import UtilsCard from './utils-card/index'
 
 const components = [
   Radio,
   HorizontalMenu,
-  VerticalMenu
+  VerticalMenu,
+  UtilsCard
 ]
 
 const install = (Vue) => {

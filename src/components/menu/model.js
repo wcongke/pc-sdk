@@ -29,6 +29,11 @@ export default (data = {}) => ({
         name: 'components.vertical-menu',
         text: 'VerticalMenu 垂直菜单',
         disabled: false
+      },
+      {
+        name: 'components.utils-card',
+        text: 'UtilsCard 工具卡片',
+        disabled: false
       }
     ],
     utils: []
