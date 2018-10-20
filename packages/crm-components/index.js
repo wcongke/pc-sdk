@@ -2,12 +2,14 @@ import Radio from './radio/index'
 import HorizontalMenu from './horizontal-menu/index'
 import VerticalMenu from './vertical-menu/index'
 import UtilsCard from './utils-card/index'
+import Pagination from './pagination/index'
 
 const components = [
   Radio,
   HorizontalMenu,
   VerticalMenu,
-  UtilsCard
+  UtilsCard,
+  Pagination
 ]
 
 const install = (Vue) => {

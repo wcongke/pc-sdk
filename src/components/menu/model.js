@@ -34,6 +34,11 @@ export default (data = {}) => ({
         name: 'components.utils-card',
         text: 'UtilsCard 工具卡片',
         disabled: false
+      },
+      {
+        name: 'components.pagination',
+        text: 'Pagination 分页',
+        disabled: false
       }
     ],
     utils: []

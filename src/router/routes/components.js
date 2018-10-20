@@ -43,6 +43,15 @@ export default [{
       },
       component: () =>
         import('@/views/components/utils-card/index.vue')
+    },
+    {
+      name: 'components.pagination',
+      path: '/pagination',
+      meta: {
+        title: '分页'
+      },
+      component: () =>
+        import('@/views/components/pagination/index.vue')
     }
   ]
 }]
