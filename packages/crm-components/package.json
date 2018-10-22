@@ -1,6 +1,6 @@
 {
   "name": "can.crm-components",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "crm-components",
   "main": "index.js",
   "scripts": {

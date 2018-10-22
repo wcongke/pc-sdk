@@ -1,23 +1,35 @@
 <style lang="stylus" scoped>
 .vertical-menu
-  display block
+  display inline-block
 
-  &__el-menu
-    border-right none
+  &__menu
+    list-style-type none
+
+  &__item
+    padding 15px 20px
+    font-size 14px
+    color #333
+    cursor pointer
+
+    &:focus,
+    &:hover,
+    &.is-active
+      font-weight 500
 </style>
 
 <template>
   <div class="vertical-menu">
-    <el-menu
-      class="vertical-menu__el-menu"
-      :style="{width}"
-      :default-active="active"
-      :active-text-color="color"
-      @select="handleSelect">
-      <el-menu-item v-for="(item, index) in menu" :key="index" :index="item.name">
-        <span slot="title">{{item.text}}</span>
-      </el-menu-item>
-    </el-menu>
+    <ul class="vertical-menu__menu" :style="{backgroundColor, width}">
+      <li
+        class="vertical-menu__item"
+        v-for="(item, index) in menu"
+        :key="index"
+        :style="{color: item.name === active ? color : '#333'}"
+        :class="{'is-active': item.name === active}"
+        @click="handleSelect(item.name)">
+        <span>{{item.text}}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -32,6 +44,14 @@ export default {
     color: {
       type: String,
       default: '#00a0e2'
+    },
+    /**
+     * 背景色
+     * @type {String}
+     */
+    backgroundColor: {
+      type: String,
+      default: '#fff'
     },
     /**
      * 宽

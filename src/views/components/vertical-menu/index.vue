@@ -79,10 +79,11 @@ export default {
     /**
      * 选择菜单
      * @param {Number, String} index - index
+     * @param {String} type - type
      */
-    handleSelect (index) {
+    handleSelect (index, type) {
       this.active = index
-      global.console.log(index)
+      global.console.log(index, type)
     }
   }
 }
