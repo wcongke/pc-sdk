@@ -6,7 +6,8 @@ export default [{
       name: 'bc.index',
       path: '',
       meta: {
-        title: '基础'
+        title: '基础',
+        module: 'base'
       },
       component: () => import('@/views/bc/index/index.vue')
     }

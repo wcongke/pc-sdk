@@ -8,8 +8,8 @@
 
 <template>
   <div class="header-nav">
-    <el-menu :default-active="active" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item v-for="(item, index) in menu" :key="index" :index="item.name">{{item.text}}</el-menu-item>
+    <el-menu :default-active="active" class="el-menu-demo" mode="horizontal">
+      <el-menu-item v-for="(item, index) in menu" :key="index" :index="item.name" @click="handleSelect(item.page)">{{item.text}}</el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -24,34 +24,40 @@ export default {
        */
       menu: [
         {
-          name: 'bc.index',
+          name: 'bc',
+          page: 'bc.index',
           text: '基础'
         },
         {
-          name: 'components.index',
+          name: 'components',
+          page: 'components.index',
           text: '业务组件'
         },
         {
-          name: 'utils.index',
+          name: 'utils',
+          page: 'utils.index',
           text: '工具'
         }
-      ],
-      /**
-       * 当前菜单
-       * @type {String}
-       */
-      active: 'bc.index'
+      ]
+    }
+  },
+  computed: {
+    /**
+     * 当前菜单
+     * @returns {String}
+     */
+    active () {
+      return this.$route.meta.module
     }
   },
   methods: {
     /**
      * 处理菜单选择
-     * @param {String} name -路由名称
+     * @param {String} page -页面
      */
-    handleSelect (name) {
-      this.active = name
+    handleSelect (page) {
       this.$router.push({
-        name
+        name: page
       })
     }
   }

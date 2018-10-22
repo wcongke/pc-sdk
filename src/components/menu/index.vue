@@ -9,7 +9,7 @@
 <template>
   <div class="menu">
     <el-menu
-      :default-active="model.active"
+      :default-active="active"
       @select="handleSelect">
       <el-menu-item v-for="(item, index) in model.list[firstRouterName]" :key="index" :index="item.name" :disabled="item.disabled">
         <span slot="title">{{item.text}}</span>
@@ -25,15 +25,26 @@ export default {
   data () {
     return {
       /**
-       * 一级路由名称
-       * @type {String}
-       */
-      firstRouterName: '',
-      /**
        * 左侧菜单数据
        * @type {Object}
        */
       model: model()
+    }
+  },
+  computed: {
+    /**
+     * 一级路由名称
+     * @return {String}
+     */
+    firstRouterName () {
+      return this.$route.meta.module
+    },
+    /**
+     * 当前菜单
+     * @returns {String}
+     */
+    active () {
+      return this.$route.name
     }
   },
   methods: {
@@ -46,16 +57,6 @@ export default {
       this.$router.push({
         name
       })
-    }
-  },
-  watch: {
-    '$route': {
-      handler (route) {
-        if (!route) return
-
-        this.firstRouterName = route.name.split('.')[0]
-        this.model.active = ''
-      }
     }
   }
 }
