@@ -7,7 +7,7 @@ export default [{
       path: '',
       meta: {
         title: '基础',
-        module: 'base'
+        module: 'bc'
       },
       component: () => import('@/views/bc/index/index.vue')
     }
