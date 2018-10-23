@@ -30,7 +30,7 @@
     <el-row class="mt10">
       <el-col :span="24">
         <div class="components-horizontal-menu__container">
-          <crm-horizontal-menu
+          <pc-horizontal-menu
             class="components-horizontal-menu__menu"
             title="CRM"
             color="#f44336"

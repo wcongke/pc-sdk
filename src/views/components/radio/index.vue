@@ -21,7 +21,7 @@
     </el-row>
     <el-row class="mt10">
       <el-col :span="24">
-        <crm-radio name="active1" v-model="active1" :options="options1"/>
+        <pc-radio name="active1" v-model="active1" :options="options1"/>
       </el-col>
     </el-row>
   </div>

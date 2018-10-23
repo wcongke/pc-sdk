@@ -1,7 +1,7 @@
 {
-  "name": "can.crm-utils",
-  "version": "0.0.2",
-  "description": "crm-utils",
+  "name": "can.pc-utils",
+  "version": "0.0.1",
+  "description": "can.pc-utils",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

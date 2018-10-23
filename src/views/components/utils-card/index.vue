@@ -1,5 +1,5 @@
 <style lang="stylus" scoped>
-@import '../../../../packages/crm-bc/stylus/index'
+@import '../../../../packages/pc-bc/stylus/index'
 
 .components-utils-card
   display block
@@ -28,10 +28,10 @@
     <el-row class="mt10">
       <el-col :span="24">
         <div class="components-utils-card__container">
-          <crm-utils-card btn-name="高级" :show-all="false">
+          <pc-utils-card btn-name="高级" :show-all="false">
             <div slot="top">top</div>
             <div slot="body">body</div>
-          </crm-utils-card>
+          </pc-utils-card>
         </div>
       </el-col>
     </el-row>

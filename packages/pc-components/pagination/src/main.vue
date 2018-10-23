@@ -1,5 +1,5 @@
 <style lang="stylus" scoped>
-.crm-pagination
+.pc-pagination
   display inline-block
 
   .el-pagination__editor
@@ -12,7 +12,7 @@
 
 <template>
   <el-pagination
-    class="crm-pagination"
+    class="pc-pagination"
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
     :current-page="currentPage"
@@ -26,7 +26,7 @@
 </template>
 <script>
 export default {
-  name: 'crm-pagination',
+  name: 'pc-pagination',
   props: {
     // 每页显示数量, 默认20
     pageSize: {

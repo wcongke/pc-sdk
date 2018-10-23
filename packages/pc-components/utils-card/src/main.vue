@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: 'crm-utils-card',
+  name: 'pc-utils-card',
   props: {
     /**
      * 显示全部

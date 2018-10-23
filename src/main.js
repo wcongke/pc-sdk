@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
-import CRMComponents from '../packages/crm-components/'
+import PCComponents from '../packages/pc-components/'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/styles/global.styl'
@@ -13,7 +13,7 @@ import router from './router/index'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
-Vue.use(CRMComponents)
+Vue.use(PCComponents)
 
 new Vue({
   router,

@@ -30,7 +30,7 @@
     <el-row class="mt10">
       <el-col :span="24">
         <div class="components-vertical-menu__container">
-          <crm-vertical-menu
+          <pc-vertical-menu
             color="#f44336"
             width="200px"
             :menu="menu"

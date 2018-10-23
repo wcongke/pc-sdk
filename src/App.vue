@@ -1,5 +1,5 @@
 <style lang="stylus" scoped>
-@import '../packages/crm-bc/stylus/index.styl'
+@import '../packages/pc-bc/stylus/index.styl'
 
 .app-view
   overflow-y hidden

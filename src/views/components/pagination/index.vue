@@ -21,7 +21,7 @@
     </el-row>
     <el-row class="mt10">
       <el-col :span="24">
-        <crm-pagination
+        <pc-pagination
           :pageSize="pagination.pageSize"
           :total="pagination.total"
           :currentPage.sync="pagination.currentPage"

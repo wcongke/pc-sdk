@@ -119,7 +119,7 @@
 
 <script>
 export default {
-  name: 'crm-horizontal-menu',
+  name: 'pc-horizontal-menu',
   props: {
     /**
      * 标题

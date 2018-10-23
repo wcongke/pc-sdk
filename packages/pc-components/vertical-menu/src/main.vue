@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'crm-vertical-menu',
+  name: 'pc-vertical-menu',
   props: {
     /**
      * 颜色

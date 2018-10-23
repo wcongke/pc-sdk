@@ -1,5 +1,5 @@
 <style lang="stylus" scoped>
-.crm-radio
+.pc-radio
   display inline-block
 
   &__input
@@ -54,25 +54,25 @@
 </style>
 
 <template>
-  <div class="crm-radio">
+  <div class="pc-radio">
     <div
-      class="crm-radio__item"
+      class="pc-radio__item"
       :style="{ minWidth: minWidth + 'px' }"
       v-for="(item, index) in options"
       :key="index"
       @click="active = item.value">
-      <span class="crm-radio__input">
+      <span class="pc-radio__input">
         <input :id="`${name}-${index}`" :name="name" type="radio" :value="item.value" :checked="item.value === active"/>
         <label :for="`${name}-${index}`"></label>
       </span>
-      <span class="crm-radio__item--label">{{item.label}}</span>
+      <span class="pc-radio__item--label">{{item.label}}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'crm-radio',
+  name: 'pc-radio',
   props: {
     name: {
       type: String,
