@@ -55,6 +55,15 @@ export default [{
         module: 'components'
       },
       component: () => import('@/views/components/pagination/index.vue')
+    },
+    {
+      name: 'components.dialog',
+      path: 'dialog',
+      meta: {
+        title: '对话框',
+        module: 'components'
+      },
+      component: () => import('@/views/components/dialog/index.vue')
     }
   ]
 }]

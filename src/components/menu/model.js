@@ -39,6 +39,11 @@ export default (data = {}) => ({
         name: 'components.pagination',
         text: 'Pagination 分页',
         disabled: false
+      },
+      {
+        name: 'components.dialog',
+        text: 'Dialog 对话框',
+        disabled: false
       }
     ],
     utils: []
