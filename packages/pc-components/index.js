@@ -4,6 +4,7 @@ import VerticalMenu from './vertical-menu/index'
 import UtilsCard from './utils-card/index'
 import Pagination from './pagination/index'
 import Dialog from './dialog/index'
+import DistrictSelect from './district-select/index'
 
 const components = [
   Radio,
@@ -11,7 +12,8 @@ const components = [
   VerticalMenu,
   UtilsCard,
   Pagination,
-  Dialog
+  Dialog,
+  DistrictSelect
 ]
 
 const install = (Vue) => {

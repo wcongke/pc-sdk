@@ -64,6 +64,15 @@ export default [{
         module: 'components'
       },
       component: () => import('@/views/components/dialog/index.vue')
+    },
+    {
+      name: 'components.district-select',
+      path: 'district-select',
+      meta: {
+        title: '行政区域选择',
+        module: 'components'
+      },
+      component: () => import('@/views/components/district-select/index.vue')
     }
   ]
 }]

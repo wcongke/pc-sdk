@@ -1,18 +1,41 @@
-.clearbt
-  clear both
+.pc
 
-// 清除浮动
-.clearfix
-  &:before,
-  &:after
-    display table
-    content ""
-
-  &:after
+  &__clearbt
     clear both
 
-/**
- * transform
- */
-.transform-center
-  transform translateX(-50%) translateY(-50%)
+  // 清除浮动
+  &__clearfix
+    &:before,
+    &:after
+      display table
+      content ""
+
+    &:after
+      clear both
+
+  /**
+  * transform
+  */
+  &__transform-center
+    transform translate(-50%, -50%)
+
+  /**
+   * Note 尽量使用mt来分隔两个块级元素，而不要使用mb
+   * margin-top -right -left -bottom
+   * .mt-20, .mt-15, ..., .mt200
+   */
+  for $i in -4..40
+    &__mt{$i * 5}
+      margin-top 5px * $i
+
+  for $i in -4..40
+    &__mr{$i * 5}
+      margin-right 5px * $i
+
+  for $i in -4..40
+    &__ml{$i * 5}
+      margin-left 5px * $i
+
+  for $i in -4..40
+    &__mb{$i * 5}
+      margin-bottom 5px * $i

@@ -67,6 +67,7 @@
         margin-left -20px
         padding-top 20px
         transition padding-top .3s
+        overflow-y auto
         // border-right 1px solid $color-grey5
 
         &--title

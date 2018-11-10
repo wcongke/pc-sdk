@@ -44,6 +44,11 @@ export default (data = {}) => ({
         name: 'components.dialog',
         text: 'Dialog 对话框',
         disabled: false
+      },
+      {
+        name: 'components.district-select',
+        text: 'DistrictSelect 行政区域选择',
+        disabled: false
       }
     ],
     utils: []
