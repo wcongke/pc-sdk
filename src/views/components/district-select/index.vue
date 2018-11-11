@@ -15,7 +15,7 @@
     </el-row>
     <el-row class="pc__mt10">
       <el-col :span="24">
-        <pc-district-select amap-key="462486a5c1c5186befb704f32f4d22fb" :default-district="district" @district="getDistrict"/>
+        <pc-district-select amap-key="462486a5c1c5186befb704f32f4d22fb" v-model="district"/>
       </el-col>
     </el-row>
   </div>
@@ -30,15 +30,6 @@ export default {
        * @type {Object}
        */
       district: {}
-    }
-  },
-  methods: {
-    /**
-     * 获取行政区域
-     * @param {Object} district -行政区域
-     */
-    getDistrict (district) {
-      this.district = district
     }
   }
 }

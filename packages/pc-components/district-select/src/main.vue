@@ -18,7 +18,7 @@
       v-model="district.province"
       value-key="adcode"
       @visible-change="districtSearch(amapKey, '中国', 'country', 1)"
-      @change="district.city = null">
+      @change="district.city = null, district.district = null, isInit = false">
       <el-option
         v-for="item in options"
         v-bind:key="item.adcode"
@@ -31,7 +31,7 @@
       v-model="district.city"
       value-key="adcode"
       @visible-change="districtSearch(amapKey, district.province.name, 'province', 1)"
-      @change="district.district = null">
+      @change="district.district = null, isInit = false">
       <el-option
         v-for="item in options"
         v-bind:key="item.adcode"
@@ -44,7 +44,7 @@
       v-model="district.district"
       value-key="adcode"
       @visible-change="districtSearch(amapKey, district.city.name, 'city', 1)"
-      @change="handleChange">
+      @change="isInit = false">
       <el-option
         v-for="item in options"
         v-bind:key="item.adcode"
@@ -55,34 +55,10 @@
 </template>
 
 <script>
-import utils from '../../utils/index'
 import index from './index'
 
 export default {
   name: 'pc-district-select',
-  mixins: [index],
-  props: {
-    /**
-     * 高德key
-     * @type {String}
-     */
-    amapKey: {
-      type: String,
-      default: ''
-    },
-    /**
-     * 默认行政区域
-     * @type {Object}
-     */
-    defaultDistrict: {
-      type: Object,
-      default: () => {}
-    }
-  },
-  created () {
-    if (this.defaultDistrict) {
-      utils.merge(this.district, this.defaultDistrict)
-    }
-  }
+  mixins: [index]
 }
 </script>

@@ -1,6 +1,24 @@
+import utils from '../../utils/index'
 import amap from '../../utils/amap'
 
 export default {
+  props: {
+    /**
+     * 默认行政区域
+     */
+    value: {
+      type: Object,
+      default: () => {}
+    },
+    /**
+     * 高德key
+     * @type {String}
+     */
+    amapKey: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       /**
@@ -19,7 +37,12 @@ export default {
        * 地址选项
        * @type {Array}
        */
-      options: []
+      options: [],
+      /**
+       * 初始状态
+       * @type {Boolean}
+       */
+      isInit: true
     }
   },
   methods: {
@@ -41,13 +64,34 @@ export default {
         .then((res) => {
           this.options = res[0].districtList
         })
+    }
+  },
+  watch: {
+    /**
+     * 监听组件显示隐藏状态
+     * @param {Boolean} newVal - 显示/隐藏
+     */
+    value: {
+      deep: true,
+      handler (newVal) {
+        if (!newVal || (newVal && !newVal.district) || !this.isInit) return
+
+        utils.merge(this.district, newVal)
+        this.districtSearch(this.amapKey, '中国', 'country', 1)
+        this.districtSearch(this.amapKey, newVal.province.name, 'province', 1)
+        this.districtSearch(this.amapKey, newVal.city.name, 'city', 1)
+      }
     },
     /**
-     * 处理地址改变结果
-     * @function [handleChange]
+     * 双向绑定
+     * @param {Boolean} newVal - 显示/隐藏
      */
-    handleChange () {
-      this.$emit('district', this.district)
+    district: {
+      deep: true,
+      handler (newVal) {
+        this.isInit = false
+        this.$emit('input', newVal)
+      }
     }
   }
 }
