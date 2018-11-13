@@ -4,13 +4,6 @@
 
 import loadScript from './load-script'
 
-/**
- * 高德key
- * [Vincent web] 462486a5c1c5186befb704f32f4d22fb
- * [Vincent web-service] 2c5a773cd39db15654611956fb74f6e5
- */
-// const amapKey = '462486a5c1c5186befb704f32f4d22fb'
-
 export default {
   AMap: null,
   promise: null,
