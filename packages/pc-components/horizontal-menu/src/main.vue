@@ -14,6 +14,8 @@
     display flex
     align-items center
     justify-content center
+    overflow hidden
+    overflow-x auto
 
   &__right
     display flex
@@ -28,6 +30,7 @@
   &__menu
     font-size 14px
     color #555
+    white-space nowrap
 
     li
       list-style-type none

@@ -5,6 +5,7 @@ import UtilsCard from './utils-card/index'
 import Pagination from './pagination/index'
 import Dialog from './dialog/index'
 import DistrictSelect from './district-select/index'
+import Upload from './upload/index'
 
 const components = [
   Radio,
@@ -13,7 +14,8 @@ const components = [
   UtilsCard,
   Pagination,
   Dialog,
-  DistrictSelect
+  DistrictSelect,
+  Upload
 ]
 
 const install = (Vue) => {

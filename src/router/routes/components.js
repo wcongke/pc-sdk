@@ -73,6 +73,15 @@ export default [{
         module: 'components'
       },
       component: () => import('@/views/components/district-select/index.vue')
+    },
+    {
+      name: 'components.upload',
+      path: 'upload',
+      meta: {
+        title: '上传',
+        module: 'components'
+      },
+      component: () => import('@/views/components/upload/index.vue')
     }
   ]
 }]

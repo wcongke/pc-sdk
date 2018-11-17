@@ -49,6 +49,11 @@ export default (data = {}) => ({
         name: 'components.district-select',
         text: 'DistrictSelect 行政区域选择',
         disabled: false
+      },
+      {
+        name: 'components.upload',
+        text: 'Upload 上传',
+        disabled: false
       }
     ],
     utils: []
