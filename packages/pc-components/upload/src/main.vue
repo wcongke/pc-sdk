@@ -50,7 +50,7 @@ export default {
      */
     showNote: {
       type: Boolean,
-      default: true
+      default: false
     },
     /**
      * 上传地址
@@ -71,7 +71,7 @@ export default {
      */
     fileType: {
       type: Array,
-      default: () => (['image/jpg', 'image/png', 'image/jpeg'])
+      default: () => []
     },
     /**
      * 文件类型文案
@@ -79,7 +79,7 @@ export default {
      */
     fileTypeText: {
       type: String,
-      default: 'JPG、JPEG、PNG'
+      default: ''
     }
   },
   data () {
@@ -103,7 +103,7 @@ export default {
      * @returns {Boolean} - true or false
      */
     beforeUpload (file) {
-      const isOurType = this.fileType.indexOf(file.type) >= 0
+      const isOurType = this.fileType.includes(file.type) || this.fileType.length === 0
       const isLt = file.size / 1024 / 1024 < this.maxSize
 
       if (!isOurType) {

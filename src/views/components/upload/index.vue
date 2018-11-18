@@ -15,7 +15,7 @@
     </el-row>
     <el-row class="pc__mt10">
       <el-col :span="24">
-        <pc-upload :action="action" @getUrl="getUrl"/>
+        <pc-upload :action="action" :file-type="['image/jpg', 'image/png', 'image/jpeg']" @getUrl="getUrl"/>
       </el-col>
     </el-row>
   </div>
