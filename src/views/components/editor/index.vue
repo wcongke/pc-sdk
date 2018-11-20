@@ -1,11 +1,16 @@
 <style lang="stylus" scoped>
-.components-upload
+.components-editor
   display block
 </style>
 
+<style lang="stylus">
+.ql-editor
+  min-height 400px
+</style>
+
 <template>
-  <div class="components-upload">
-    <h2>Upload 上传文件</h2>
+  <div class="components-editor">
+    <h2>Editor 编辑器</h2>
     <!-- <p class="color-grey1 pc__mt10">在一组备选项中进行单选</p> -->
     <el-row class="pc__mt40">
       <el-col :span="24">
@@ -15,7 +20,7 @@
     </el-row>
     <el-row class="pc__mt10">
       <el-col :span="24">
-        <pc-upload :action="action" :file-type="['image/jpg', 'image/png', 'image/jpeg']" @getUrl="getUrl"/>
+        <pc-editor v-model="content" :action="action"/>
       </el-col>
     </el-row>
   </div>
@@ -29,13 +34,15 @@ export default {
        * 上传地址
        * @type {String}
        */
-      action: 'http://orange.bananayc.com/honghealthy/file/fileUpload'
+      action: 'http://orange.bananayc.com/honghealthy/file/fileUpload',
+      /**
+       * 内容
+       * @type {String}
+       */
+      content: ''
     }
   },
   methods: {
-    getUrl (file) {
-      console.log(file)
-    }
   }
 }
 </script>

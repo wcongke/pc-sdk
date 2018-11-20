@@ -82,6 +82,15 @@ export default [{
         module: 'components'
       },
       component: () => import('@/views/components/upload/index.vue')
+    },
+    {
+      name: 'components.editor',
+      path: 'editor',
+      meta: {
+        title: '编辑器',
+        module: 'components'
+      },
+      component: () => import('@/views/components/editor/index.vue')
     }
   ]
 }]

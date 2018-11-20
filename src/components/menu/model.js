@@ -54,6 +54,11 @@ export default (data = {}) => ({
         name: 'components.upload',
         text: 'Upload 上传',
         disabled: false
+      },
+      {
+        name: 'components.editor',
+        text: 'Editor 编辑器',
+        disabled: false
       }
     ],
     utils: []

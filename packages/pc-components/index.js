@@ -6,6 +6,7 @@ import Pagination from './pagination/index'
 import Dialog from './dialog/index'
 import DistrictSelect from './district-select/index'
 import Upload from './upload/index'
+import Editor from './editor/index'
 
 const components = [
   Radio,
@@ -15,7 +16,8 @@ const components = [
   Pagination,
   Dialog,
   DistrictSelect,
-  Upload
+  Upload,
+  Editor
 ]
 
 const install = (Vue) => {
