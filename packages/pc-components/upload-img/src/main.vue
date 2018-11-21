@@ -93,6 +93,9 @@ export default {
       this.onProgress = false
     }
   },
+  mounted () {
+    this.img = this.value
+  },
   watch: {
     /**
      * 监听父级值变化
