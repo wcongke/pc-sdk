@@ -56,6 +56,11 @@ export default (data = {}) => ({
         disabled: false
       },
       {
+        name: 'components.upload-img',
+        text: 'UploadImg 上传图片',
+        disabled: false
+      },
+      {
         name: 'components.editor',
         text: 'Editor 编辑器',
         disabled: false

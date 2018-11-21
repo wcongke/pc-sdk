@@ -23,7 +23,6 @@
       drag
       :action="action"
       v-bind:show-file-list="false"
-      v-bind:data="form"
       v-bind:before-upload="handleBeforeUpload"
       v-bind:on-success="handleSuccess"
       multiple>
@@ -62,11 +61,6 @@ export default {
        * @type {String}
        */
       content: '',
-      /**
-       * 数据表单
-       * @type {Object}
-       */
-      form: null,
       /**
        * 编辑券配置
        * @type {Object}

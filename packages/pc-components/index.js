@@ -6,6 +6,7 @@ import Pagination from './pagination/index'
 import Dialog from './dialog/index'
 import DistrictSelect from './district-select/index'
 import Upload from './upload/index'
+import UploadImg from './upload-img/index'
 import Editor from './editor/index'
 
 const components = [
@@ -17,7 +18,8 @@ const components = [
   Dialog,
   DistrictSelect,
   Upload,
-  Editor
+  Editor,
+  UploadImg
 ]
 
 const install = (Vue) => {

@@ -1,11 +1,11 @@
 <style lang="stylus" scoped>
-.components-upload
+.components-upload-img
   display block
 </style>
 
 <template>
-  <div class="components-upload">
-    <h2>Upload 上传文件</h2>
+  <div class="components-upload-img">
+    <h2>Upload 上传图片</h2>
     <!-- <p class="color-grey1 pc__mt10">在一组备选项中进行单选</p> -->
     <el-row class="pc__mt40">
       <el-col :span="24">
@@ -15,7 +15,7 @@
     </el-row>
     <el-row class="pc__mt10">
       <el-col :span="24">
-        <pc-upload :action="action" :file-type="['image/jpg', 'image/png', 'image/jpeg']" v-model="url"/>
+        <pc-upload-img v-model="url" :action="action"/>
       </el-col>
     </el-row>
   </div>
@@ -32,7 +32,6 @@ export default {
       action: 'http://orange.bananayc.com/honghealthy/file/fileUpload',
       /**
        * url
-       * @type {String}
        */
       url: ''
     }

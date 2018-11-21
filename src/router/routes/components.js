@@ -84,6 +84,15 @@ export default [{
       component: () => import('@/views/components/upload/index.vue')
     },
     {
+      name: 'components.upload-img',
+      path: 'upload-img',
+      meta: {
+        title: '上传图片',
+        module: 'components'
+      },
+      component: () => import('@/views/components/upload-img/index.vue')
+    },
+    {
       name: 'components.editor',
       path: 'editor',
       meta: {

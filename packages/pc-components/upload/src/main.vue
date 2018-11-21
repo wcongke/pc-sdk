@@ -37,6 +37,13 @@ export default {
   name: 'pc-upload',
   props: {
     /**
+      * 默认值
+      */
+    value: {
+      type: String,
+      default: ''
+    },
+    /**
      * 注意事项
      * @type {String}
      */
@@ -127,8 +134,23 @@ export default {
      */
     handleSuccess (response) {
       this.fileUrl = response.data
-      this.$emit('getUrl', response.data)
       this.onProgress = false
+    }
+  },
+  watch: {
+    /**
+     * 监听父级值变化
+     * @param {Boolean} newVal - 显示/隐藏
+     */
+    value (newVal) {
+      this.fileUrl = newVal
+    },
+    /**
+     * 双向绑定
+     * @param {Boolean} newVal - 显示/隐藏
+     */
+    fileUrl (newVal) {
+      this.$emit('input', newVal)
     }
   }
 }
