@@ -163,9 +163,7 @@ export default {
     value: {
       deep: true,
       handler (newVal) {
-        console.log(newVal, this.model.isInit)
         if (!newVal || (newVal && !newVal.district) || !this.model.isInit) return
-        console.log(newVal, 1111)
 
         utils.merge(this.model.address, newVal)
         this.districtSearch(this.amapKey, '中国', 'country', 1)
