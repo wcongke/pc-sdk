@@ -46,6 +46,11 @@ export default (data = {}) => ({
         disabled: false
       },
       {
+        name: 'components.place-search-by-map',
+        text: 'PlaceSearchByMap 通过地图搜索地址',
+        disabled: false
+      },
+      {
         name: 'components.district-select',
         text: 'DistrictSelect 行政区域选择',
         disabled: false

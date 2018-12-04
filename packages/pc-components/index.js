@@ -5,6 +5,7 @@ import UtilsCard from './utils-card/index'
 import Pagination from './pagination/index'
 import Dialog from './dialog/index'
 import DistrictSelect from './district-select/index'
+import PlaceSearchByMap from './place-search-by-map/index'
 import Upload from './upload/index'
 import UploadImg from './upload-img/index'
 import Editor from './editor/index'
@@ -17,6 +18,7 @@ const components = [
   Pagination,
   Dialog,
   DistrictSelect,
+  PlaceSearchByMap,
   Upload,
   Editor,
   UploadImg

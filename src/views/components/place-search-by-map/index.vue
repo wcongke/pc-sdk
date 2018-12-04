@@ -1,12 +1,12 @@
 <style lang="stylus" scoped>
-.components-district-select
+.components-place-search-by-map
   display block
 </style>
 
 <template>
-  <div class="components-district-select">
-    <h2>DistrictSelect 行政区域选择</h2>
-    <p class="color-grey1 pc__mt10">行政区域选择</p>
+  <div class="components-place-search-by-map">
+    <h2>PlaceSearchByMap 通过地图搜索地址</h2>
+    <p class="color-grey1 pc__mt10">通过地图搜索地址</p>
     <el-row class="pc__mt40">
       <el-col :span="24">
         <h3>基础用法</h3>
@@ -15,7 +15,7 @@
     </el-row>
     <el-row class="pc__mt10">
       <el-col :span="24">
-        <pc-district-select :amap-key="AMAP_KEY" v-model="district"/>
+        <pc-place-search-by-map :amap-key="AMAP_KEY" v-model="place"/>
       </el-col>
     </el-row>
   </div>
@@ -29,10 +29,10 @@ export default {
     return {
       AMAP_KEY,
       /**
-       * 行政区域
+       * 行政地址
        * @type {Object}
        */
-      district: {}
+      place: {}
     }
   }
 }

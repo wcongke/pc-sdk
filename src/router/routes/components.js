@@ -75,6 +75,15 @@ export default [{
       component: () => import('@/views/components/district-select/index.vue')
     },
     {
+      name: 'components.place-search-by-map',
+      path: 'place-search-by-map',
+      meta: {
+        title: '通过地图搜索地址',
+        module: 'components'
+      },
+      component: () => import('@/views/components/place-search-by-map/index.vue')
+    },
+    {
       name: 'components.upload',
       path: 'upload',
       meta: {

@@ -85,7 +85,7 @@
     <div class="app-view__header-wrapper">
       <header class="app-view__header">
         <div class="app-view__container">
-          <h1 class="app-view__logo">CRM SDK</h1>
+          <h1 class="app-view__logo">CAN PC SDK</h1>
           <div class="app-view__nav">
             <header-nav />
           </div>
