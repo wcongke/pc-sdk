@@ -40,6 +40,7 @@
           placeholder="请选择"
           v-model="model.address.province"
           value-key="adcode"
+          filterable
           @visible-change="districtSearch(amapKey, '中国', 'country', 1)"
           @change="
             model.address.city = null,
@@ -59,6 +60,7 @@
           placeholder="请选择"
           v-model="model.address.city"
           value-key="adcode"
+          filterable
           @visible-change="districtSearch(amapKey, model.address.province ? model.address.province.name : null, 'province', 1)"
           @change="
             model.address.district = null,
@@ -77,6 +79,7 @@
           placeholder="请选择"
           v-model="model.address.district"
           value-key="adcode"
+          filterable
           @visible-change="districtSearch(amapKey, model.address.city ? model.address.city.name : null, 'city', 1)"
           @change="
             model.address.street = null,
@@ -95,16 +98,16 @@
           class="place-search-by-map__input"
           placeholder="请输入地址"
           value-key="name"
-          v-model="model.address.streetName"
+          v-model="model.address.streetAddress"
           :fetch-suggestions="streetSearch"
           @select="selectStreet">
           <template slot-scope="{ item }">
-            <p>{{item.name}}</p>
+            <p>{{item.address}}</p>
           </template>
         </el-autocomplete>
       </div>
     </div>
-    <el-input class="place-search-by-map__details" v-model="model.address.details" placeholder="请输入门牌号"></el-input>
+    <el-input class="place-search-by-map__details" v-model="model.address.details" v-if="hadDetails" placeholder="请输入门牌号"></el-input>
     <div class="place-search-by-map__map" ref="map"></div>
   </div>
 </template>

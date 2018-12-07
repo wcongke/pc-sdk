@@ -24,6 +24,14 @@ export default {
     amapKey: {
       type: String,
       default: ''
+    },
+    /**
+     * 有无详情地址
+     * @type {Boolean}
+     */
+    hadDetails: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
@@ -132,7 +140,7 @@ export default {
       }
 
       this.model.address.street = street
-      this.model.address.streetName = street.name
+      this.model.address.streetAddress = street.address
     },
     /**
      * 搜索地址
@@ -169,7 +177,7 @@ export default {
         this.districtSearch(this.amapKey, '中国', 'country', 1)
         this.districtSearch(this.amapKey, newVal.province.name, 'province', 1)
         this.districtSearch(this.amapKey, newVal.city.name, 'city', 1)
-        this.model.address.streetName = newVal.street.name
+        this.model.address.streetAddress = newVal.street.address
         this.setMapCenter(newVal.street.location)
         this.addMarker(this.amapKey, newVal.street.location.lng, newVal.street.location.lat)
       }

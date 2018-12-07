@@ -14,7 +14,7 @@ export default (data = {}) => ({
     // 街道
     street: null,
     // 街道名称
-    streetName: null,
+    streetAddress: null,
     // 详细地址
     details: null
   },
