@@ -29,6 +29,10 @@
     background-color #eee
     width 100%
     min-height 300px
+
+  &__item-address
+    font-size 12px
+    color  #aaa
 </style>
 
 <template>
@@ -46,6 +50,7 @@
             model.address.city = null,
             model.address.district = null,
             model.address.street = null,
+            model.address.streetAddress = null,
             model.address.details = null,
             setMapCenter(model.address.province.center)
             isInit = false">
@@ -65,6 +70,7 @@
           @change="
             model.address.district = null,
             model.address.street = null,
+            model.address.streetAddress = null,
             model.address.details = null,
             setMapCenter(model.address.city.center)
             isInit = false">
@@ -83,6 +89,7 @@
           @visible-change="districtSearch(amapKey, model.address.city ? model.address.city.name : null, 'city', 1)"
           @change="
             model.address.street = null,
+            model.address.streetAddress = null,
             model.address.details = null
             setMapCenter(model.address.district.center),
             isInit = false">
@@ -97,12 +104,13 @@
         <el-autocomplete
           class="place-search-by-map__input"
           placeholder="请输入地址"
-          value-key="name"
+          value-key="address"
           v-model="model.address.streetAddress"
           :fetch-suggestions="streetSearch"
           @select="selectStreet">
           <template slot-scope="{ item }">
-            <p>{{item.address}}</p>
+            <p>{{item.name}}</p>
+            <p class="place-search-by-map__item-address">{{item.address}}</p>
           </template>
         </el-autocomplete>
       </div>
