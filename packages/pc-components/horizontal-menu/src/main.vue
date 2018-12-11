@@ -4,6 +4,10 @@
   background-color #ffffff
   box-shadow 0 2px 12px 0 #d1dae0
 
+  &__container
+    display flex
+    margin 0 auto
+
   &__left
     display flex
     align-items center
@@ -77,45 +81,47 @@
 
 <template>
   <div class="horizontal-menu" :style="{height}">
-    <div class="horizontal-menu__left">
-      <h2 :style="{color}">{{title}}</h2>
-    </div>
-    <div class="horizontal-menu__center">
-      <ul class="horizontal-menu__menu">
-        <li v-for="(item, index) in menu" :key="index">
-          <div
-            class="horizontal-menu__menu__item"
-            :class="{'is-active': item.name === active}"
-            :style="{height, lineHeight: height}"
-            @click="handleSelect(item.name, item.page)">
-            <span>{{item.text}}</span>
-            <span
-              class="horizontal-menu__menu__item--active"
-              :style="{backgroundColor: color}"
-              v-if="item.name === active"></span>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="horizontal-menu__right">
-      <i
-        class="horizontal-menu__icon"
-        v-for="(item, index) in iconList"
-        :key="index"
-        :class="item.icon"
-        @click="handleSelect(item.name, item.page)"></i>
+    <div class="horizontal-menu__container" :style="{width: containerWidth, padding: containerPadding}">
+      <div class="horizontal-menu__left">
+        <h2 :style="{color}">{{title}}</h2>
+      </div>
+      <div class="horizontal-menu__center">
+        <ul class="horizontal-menu__menu">
+          <li v-for="(item, index) in menu" :key="index">
+            <div
+              class="horizontal-menu__menu__item"
+              :class="{'is-active': item.name === active}"
+              :style="{height, lineHeight: height}"
+              @click="handleSelect(item.name, item.page)">
+              <span>{{item.text}}</span>
+              <span
+                class="horizontal-menu__menu__item--active"
+                :style="{backgroundColor: color}"
+                v-if="item.name === active"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="horizontal-menu__right">
+        <i
+          class="horizontal-menu__icon"
+          v-for="(item, index) in iconList"
+          :key="index"
+          :class="item.icon"
+          @click="handleSelect(item.name, item.page)"></i>
 
-      <el-dropdown class="horizontal-menu__el-dropdown" @command="handleCommand">
-        <span class="el-dropdown-link">
-          {{dropdown.text}} <i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item
-            v-for="(item, index) in dropdown.menu"
-            :key="index"
-            :command="item.name">{{item.text}}</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+        <el-dropdown class="horizontal-menu__el-dropdown" @command="handleCommand">
+          <span class="el-dropdown-link">
+            {{dropdown.text}} <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item
+              v-for="(item, index) in dropdown.menu"
+              :key="index"
+              :command="item.name">{{item.text}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -147,6 +153,22 @@ export default {
     height: {
       type: String,
       default: '50px'
+    },
+    /**
+     * 菜单容器宽度
+     * @type {String}
+     */
+    containerWidth: {
+      type: String,
+      default: '100%'
+    },
+    /**
+     * 菜单容器内边距
+     * @type {String}
+     */
+    containerPadding: {
+      type: String,
+      default: '0 20px'
     },
     /**
      * 菜单

@@ -35,6 +35,8 @@
             title="CRM"
             color="#f44336"
             height="50px"
+            container-width="100%"
+            container-padding="0"
             :menu="menu"
             :icon-list="iconList"
             :active="active"
