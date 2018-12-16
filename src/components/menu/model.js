@@ -61,6 +61,11 @@ export default (data = {}) => ({
         disabled: false
       },
       {
+        name: 'components.upload-img-batch',
+        text: 'UploadImgBatch 批量上传图片',
+        disabled: false
+      },
+      {
         name: 'components.upload-img',
         text: 'UploadImg 上传图片',
         disabled: false

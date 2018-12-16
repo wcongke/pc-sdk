@@ -8,6 +8,7 @@ import DistrictSelect from './district-select/index'
 import PlaceSearchByMap from './place-search-by-map/index'
 import Upload from './upload/index'
 import UploadImg from './upload-img/index'
+import UploadImgBatch from './upload-img-batch/index'
 import Editor from './editor/index'
 
 const components = [
@@ -20,8 +21,9 @@ const components = [
   DistrictSelect,
   PlaceSearchByMap,
   Upload,
-  Editor,
-  UploadImg
+  UploadImg,
+  UploadImgBatch,
+  Editor
 ]
 
 const install = (Vue) => {

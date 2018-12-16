@@ -102,6 +102,15 @@ export default [{
       component: () => import('@/views/components/upload-img/index.vue')
     },
     {
+      name: 'components.upload-img-batch',
+      path: 'upload-img-batch',
+      meta: {
+        title: '批量上传图片',
+        module: 'components'
+      },
+      component: () => import('@/views/components/upload-img-batch/index.vue')
+    },
+    {
       name: 'components.editor',
       path: 'editor',
       meta: {
