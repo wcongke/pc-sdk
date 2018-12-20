@@ -1,6 +1,6 @@
 <style lang="stylus" scoped>
 .upload-img
-  display block
+  display inline-block
 
   &__img
     width 100%
@@ -22,7 +22,7 @@
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
       </div>
-      <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过2MB</div>
+      <div class="el-upload__tip" slot="tip">{{tip}}</div>
     </el-upload>
   </div>
 </template>
@@ -40,9 +40,18 @@ export default {
     },
     /**
      * 上传地址
-     * @type {String}
      */
-    action: ''
+    action: {
+      type: String,
+      default: ''
+    },
+    /**
+     * tip
+     */
+    tip: {
+      type: String,
+      default: '只能上传jpg/png文件，且不超过2MB'
+    }
   },
   data () {
     return {

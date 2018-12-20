@@ -1,6 +1,6 @@
 {
   "name": "can.pc-components",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "can.pc-components",
   "main": "index.js",
   "scripts": {
