@@ -36,63 +36,6 @@ export default {
   },
   methods: {
     /**
-     * 初始化地图
-     * @function [initAmap]
-     * @param {String} amapKey -高德key
-     */
-    initAmap (amapKey) {
-      AMAP.ready(amapKey, (AMap) => {
-        this.model.map = new AMap.Map(this.$refs.map, {
-          resizeEnable: true,
-          center: [120.137, 30.253],
-          zoom: 10
-        })
-      })
-    },
-    /**
-     * 设置地图中心点
-     * @function [setMapCenter]
-     * @param {Object} center - 中心点
-     */
-    setMapCenter (center) {
-      if (!center) return
-
-      this.clearMarker()
-      setTimeout(() => {
-        this.model.map.setCenter(center)
-        this.model.map.setFitView()
-      }, 500)
-    },
-    /**
-     * 绘制地图中心点
-     * @function [addMarker]
-     * @param {String} amapKey -高德key
-     * @param {String} lng -经度
-     * @param {String} lat -纬度
-     */
-    addMarker (amapKey, lng, lat) {
-      AMAP.ready(amapKey, (AMap) => {
-        this.clearMarker()
-
-        const marker = this.model.marker = new AMap.Marker({
-          icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
-          position: [lng, lat]
-        })
-        marker.setMap(this.model.map)
-        this.model.map.setFitView()
-      })
-    },
-    /**
-     * 清除标记点
-     * @function [clearMarker]
-     */
-    clearMarker () {
-      if (this.model.marker) {
-        this.model.marker.setMap(null)
-        this.model.marker = null
-      }
-    },
-    /**
      * 行政区信息信息搜索
      * @function [districtSearch]
      * @param {String} amapKey - 高德key
@@ -134,11 +77,6 @@ export default {
      * @param {String} street -街道
      */
     selectStreet (street) {
-      if (street) {
-        this.setMapCenter(street.location)
-        this.addMarker(this.amapKey, street.location.lng, street.location.lat)
-      }
-
       this.model.address.street = street
       this.model.address.streetAddress = street.address
     },
@@ -160,9 +98,6 @@ export default {
       })
     }
   },
-  created () {
-    this.initAmap(this.amapKey)
-  },
   watch: {
     /**
      * 监听组件显示隐藏状态
@@ -178,8 +113,6 @@ export default {
         this.districtSearch(this.amapKey, newVal.province.name, 'province', 1)
         this.districtSearch(this.amapKey, newVal.city.name, 'city', 1)
         this.model.address.streetAddress = newVal.street.address
-        this.setMapCenter(newVal.street.location)
-        this.addMarker(this.amapKey, newVal.street.location.lng, newVal.street.location.lat)
       }
     },
     /**

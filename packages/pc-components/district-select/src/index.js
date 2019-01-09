@@ -1,5 +1,5 @@
-import utils from '../../utils/index'
-import amap from '../../utils/amap'
+import methods from 'can.base-utils/src/methods'
+import AMAP from 'can.base-utils/tools/amap/index'
 
 export default {
   props: {
@@ -60,7 +60,7 @@ export default {
         return
       }
 
-      amap.districtSearch(amapKey, keyword, level, subdistrict)
+      AMAP.districtSearch(amapKey, keyword, level, subdistrict)
         .then((res) => {
           this.options = res[0].districtList
         })
@@ -76,7 +76,7 @@ export default {
       handler (newVal) {
         if (!newVal || (newVal && !newVal.district) || !this.isInit) return
 
-        utils.merge(this.district, newVal)
+        methods.merge(this.district, newVal)
         this.districtSearch(this.amapKey, '中国', 'country', 1)
         this.districtSearch(this.amapKey, newVal.province.name, 'province', 1)
         this.districtSearch(this.amapKey, newVal.city.name, 'city', 1)

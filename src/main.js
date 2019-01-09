@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
+import BaseComponents from 'can.base-components'
 import PCComponents from '../packages/pc-components/'
 
 import 'element-ui/lib/theme-chalk/index.css'
@@ -13,6 +14,7 @@ import router from './router/index'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+Vue.use(BaseComponents)
 Vue.use(PCComponents)
 
 new Vue({

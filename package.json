@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "can.base-components": "0.0.1",
     "element-ui": "^2.4.7",
     "quill": "^1.3.6",
     "vue": "^2.5.17",

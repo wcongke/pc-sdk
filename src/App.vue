@@ -65,6 +65,7 @@
         bottom 0
         margin-top 60px
         margin-left -20px
+        margin-bottom 20px
         padding-top 20px
         transition padding-top .3s
         overflow-y auto
@@ -87,7 +88,7 @@
         <div class="app-view__container">
           <h1 class="app-view__logo">CAN PC SDK</h1>
           <div class="app-view__nav">
-            <header-nav />
+            <base-horizontal-menu :menu="HorizontalMenu.list"/>
           </div>
         </div>
       </header>
@@ -98,7 +99,7 @@
           <div class="app-view__container sdk-component">
             <div class="sdk-component__menu">
               <h4 class="sdk-component__menu--title">组件</h4>
-              <sdk-menu/>
+              <base-vertical-menu :menu="VerticalMenu"/>
             </div>
             <div class="sdk-component__content">
               <router-view/>
@@ -109,3 +110,17 @@
     </div>
   </div>
 </template>
+
+<script>
+import HorizontalMenu from './common/horizontal-menu'
+import VerticalMenu from './common/vertical-menu'
+
+export default {
+  data () {
+    return {
+      HorizontalMenu: HorizontalMenu(),
+      VerticalMenu: VerticalMenu()
+    }
+  }
+}
+</script>
