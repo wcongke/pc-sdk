@@ -4,6 +4,9 @@
   background-color #ffffff
   box-shadow 0 2px 12px 0 #d1dae0
 
+  &__logo
+    height 34px
+
   &__container
     display flex
     margin 0 auto
@@ -80,10 +83,11 @@
 </style>
 
 <template>
-  <div class="horizontal-menu" :style="{height}">
+  <div class="horizontal-menu" :style="{height, backgroundColor}">
     <div class="horizontal-menu__container" :style="{width: containerWidth, padding: containerPadding}">
       <div class="horizontal-menu__left">
-        <h2 :style="{color}">{{title}}</h2>
+        <h2 v-if="title" :style="{color}">{{title}}</h2>
+        <img v-else-if="logo" class="horizontal-menu__logo" :src="logo"/>
       </div>
       <div class="horizontal-menu__center">
         <ul class="horizontal-menu__menu">
@@ -93,7 +97,7 @@
               :class="{'is-active': item.name === active}"
               :style="{height, lineHeight: height}"
               @click="handleSelect(item.name, item.page)">
-              <span>{{item.text}}</span>
+              <span :style="{color: textColor}">{{item.text}}</span>
               <span
                 class="horizontal-menu__menu__item--active"
                 :style="{backgroundColor: color}"
@@ -108,10 +112,11 @@
           v-for="(item, index) in iconList"
           :key="index"
           :class="item.icon"
+          :style="{color: textColor}"
           @click="handleSelect(item.name, item.page)"></i>
 
         <el-dropdown class="horizontal-menu__el-dropdown" @command="handleCommand">
-          <span class="el-dropdown-link">
+          <span class="el-dropdown-link" :style="{color: textColor}">
             {{dropdown.text}} <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
@@ -139,12 +144,36 @@ export default {
       default: ''
     },
     /**
+     * logo
+     * @type {String}
+     */
+    logo: {
+      type: String,
+      default: ''
+    },
+    /**
+     * 背景色
+     * @type {String}
+     */
+    backgroundColor: {
+      type: String,
+      default: '#fff'
+    },
+    /**
      * 颜色
      * @type {String}
      */
     color: {
       type: String,
       default: '#00a0e2'
+    },
+    /**
+     * 字体颜色
+     * @type {String}
+     */
+    textColor: {
+      type: String,
+      default: '#333'
     },
     /**
      * 高
