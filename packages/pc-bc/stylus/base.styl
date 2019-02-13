@@ -39,3 +39,74 @@
   for $i in -4..40
     &__mb{$i * 5}
       margin-bottom 5px * $i
+
+  /**
+   * width & height
+   */
+  &__wh-full
+    width 100%
+    height 100%
+
+  &__wa
+    width auto
+
+  &__wfull
+    width 100%
+
+
+  /**
+   * width
+   * 以px为单位
+   */
+  // .w5, .w10, ..., w1000
+  for $i in 1..200
+    &__w{$i*5}
+      width 5px * $i
+
+  /**
+   * width
+   * 以百分比为单位
+   */
+  // .w5p, .w10p, ..., w95p
+  for $i in 1..19
+    &__w{$i*5}p
+      width 5% * $i
+
+  /**
+   * height
+   * 以px为单位
+   */
+  // .h5, .h10, ..., h1000
+  for $i in 1..200
+    &__h{$i*5}
+      height 5px * $i
+
+  /**
+   * height
+   * 以百分比为单位
+   */
+  &__hfull
+    height 100%
+
+  /**
+   * min-height以px为单位
+   */
+  // .min-h10, .min-h20, ..., min-h100
+  for $i in 1..10
+    &__min-h{$i*10}
+      min-height 10px * $i
+
+  /**
+   * min-width
+   */
+  for $i in 10..50
+    &__min-w{$i*10}
+      min-width 10px * $i
+
+  /**
+   * max-width
+   */
+  // .mw100, .mw110, ..., mw500
+  for $i in 10..50
+    &__max-w{$i*10}
+      max-width 10px * $i
