@@ -11,6 +11,8 @@
       :visible.sync="dialogVisible"
       :width="width"
       :before-close="cancel"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
       @open="open"
       @opened="opened"
       @close="close"
