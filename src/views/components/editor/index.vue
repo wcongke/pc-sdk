@@ -39,7 +39,7 @@ export default {
        * 内容
        * @type {String}
        */
-      content: ''
+      content: '<p>测试测试测试</p>'
     }
   },
   methods: {

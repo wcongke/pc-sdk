@@ -137,6 +137,10 @@ export default {
   mounted () {
     // 为图片ICON绑定事件  getModule 为编辑器的内部属性
     this.$refs.myQuillEditor.quill.getModule('toolbar').addHandler('image', this.uploadImg)
+  },
+  created () {
+    // 初始化值
+    this.content = this.value
   }
 }
 </script>
