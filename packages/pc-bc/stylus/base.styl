@@ -21,24 +21,40 @@
 
   /**
    * Note 尽量使用mt来分隔两个块级元素，而不要使用mb
-   * margin-top -right -left -bottom
+   * margin -top -right -left -bottom
+   * padding -top -right -left -bottom
    * .mt-20, .mt-15, ..., .mt200
    */
   for $i in -4..40
+    &_m{$i * 5}
+      margin 5px * $i
+
     &__mt{$i * 5}
       margin-top 5px * $i
 
-  for $i in -4..40
     &__mr{$i * 5}
       margin-right 5px * $i
 
-  for $i in -4..40
     &__ml{$i * 5}
       margin-left 5px * $i
 
-  for $i in -4..40
     &__mb{$i * 5}
       margin-bottom 5px * $i
+
+    &_p{$i * 5}
+      padding 5px * $i
+
+    &__pt{$i * 5}
+      padding-top 5px * $i
+
+    &__pr{$i * 5}
+      padding-right 5px * $i
+
+    &__pl{$i * 5}
+      padding-left 5px * $i
+
+    &__pb{$i * 5}
+      padding-bottom 5px * $i
 
   /**
    * width & height
