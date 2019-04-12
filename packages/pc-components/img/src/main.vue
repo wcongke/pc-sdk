@@ -75,6 +75,7 @@
 import index from './index'
 
 export default {
+  name: 'pc-img',
   mixins: [index]
 }
 </script>

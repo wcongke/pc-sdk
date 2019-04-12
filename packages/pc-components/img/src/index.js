@@ -1,7 +1,6 @@
 const defaultImg = 'http://wb.qn.freshdayu.com/default-img@520x360.png'
 
 export default {
-  name: 'pc-img',
   props: {
     /**
      * 图片链接

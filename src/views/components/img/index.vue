@@ -28,7 +28,6 @@
     <el-row class="mt10">
       <el-col :span="24">
         <div class="components-img__container">
-          <pc-img></pc-img>
           <pc-img :src="img"/>
         </div>
       </el-col>
