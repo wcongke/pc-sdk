@@ -89,6 +89,11 @@ export default (data = {}) => ({
       name: 'components.dialog',
       text: 'Dialog 对话框',
       disabled: false
+    },
+    {
+      name: 'components.img',
+      text: 'Img 图片',
+      disabled: false
     }
   ]
   // utils: []

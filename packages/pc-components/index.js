@@ -11,6 +11,7 @@ import Upload from './upload/index'
 import UploadImg from './upload-img/index'
 import UploadImgBatch from './upload-img-batch/index'
 import Editor from './editor/index'
+import Img from './img/index'
 
 const components = [
   Radio,
@@ -25,7 +26,8 @@ const components = [
   Upload,
   UploadImg,
   UploadImgBatch,
-  Editor
+  Editor,
+  Img
 ]
 
 const install = (Vue) => {

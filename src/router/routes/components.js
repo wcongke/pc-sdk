@@ -127,6 +127,15 @@ export default [{
         module: 'components'
       },
       component: () => import('@/views/components/editor/index.vue')
+    },
+    {
+      name: 'components.img',
+      path: 'img',
+      meta: {
+        title: '图片',
+        module: 'components'
+      },
+      component: () => import('@/views/components/img/index.vue')
     }
   ]
 }]
