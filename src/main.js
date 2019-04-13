@@ -1,3 +1,6 @@
+import '@babel/polyfill'
+import Es6Promise from 'es6-promise'
+
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import BaseComponents from 'can.base-components'
@@ -16,6 +19,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(BaseComponents)
 Vue.use(PCComponents)
+Es6Promise.polyfill()
 
 new Vue({
   router,
