@@ -1,4 +1,4 @@
-const defaultImg = 'http://wb.qn.freshdayu.com/default-img@520x360.png'
+const defaultImg = 'http://wb.qn.freshdayu.com/no-image@400x200.png'
 
 export default {
   props: {
@@ -7,7 +7,7 @@ export default {
      */
     src: {
       type: String,
-      default: defaultImg
+      default: ''
     },
     /**
      * 盒子宽度
@@ -40,7 +40,24 @@ export default {
        * 旋转度数
        * @type {Number}
        */
-      rotate: 0
+      rotate: 0,
+      /**
+       * 图片链接
+       * @type {String}
+       */
+      imgSrc: defaultImg
+    }
+  },
+  watch: {
+    src (newVal) {
+      if (!newVal) {
+        this.imgSrc = defaultImg
+      }
+    }
+  },
+  created () {
+    if (!this.src) {
+      this.imgSrc = defaultImg
     }
   }
 }

@@ -8,7 +8,7 @@
   &__box
     position relative
     overflow hidden
-    border 1px dashed #333
+    border 1px dashed #999
     border-radius 4px
     background-image #fff
     cursor pointer
@@ -36,7 +36,7 @@
 <template>
   <div class="pc-img">
     <div class="pc-img__box" :style="{width: boxWidth, height: boxHeight}" @click="dialogVisible = true, imgWidth = 60">
-      <img class="pc-img__original-img" :src="src">
+      <img class="pc-img__original-img" :src="imgSrc">
     </div>
     <el-dialog
       append-to-body
@@ -59,7 +59,7 @@
         <el-row>
           <el-col :span="24">
             <div class="pc-img__dialog__img-box">
-              <img class="pc-img__dialog__img" :src="src" :style="{width: `${imgWidth}%`, transform: `rotate(${rotate}deg)`}">
+              <img class="pc-img__dialog__img" :src="imgSrc" :style="{width: `${imgWidth}%`, transform: `rotate(${rotate}deg)`}">
             </div>
           </el-col>
         </el-row>

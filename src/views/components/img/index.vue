@@ -39,7 +39,8 @@
 export default {
   data () {
     return {
-      img: 'http://wb.qn.freshdayu.com/orange-tech-logo@600x200-black.png'
+      img: ''
+      // img: 'http://wb.qn.freshdayu.com/orange-tech-logo@600x200-black.png'
     }
   }
 }
