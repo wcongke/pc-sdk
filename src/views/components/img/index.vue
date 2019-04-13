@@ -28,7 +28,7 @@
     <el-row class="mt10">
       <el-col :span="24">
         <div class="components-img__container">
-          <pc-img :src="img"/>
+          <pc-img box-width="400px" box-height="300px" :src="img"/>
         </div>
       </el-col>
     </el-row>
@@ -39,8 +39,7 @@
 export default {
   data () {
     return {
-      img: ''
-      // img: 'http://wb.qn.freshdayu.com/orange-tech-logo@600x200-black.png'
+      img: 'http://wb.qn.freshdayu.com/orange-tech-logo@600x200-black.png'
     }
   }
 }

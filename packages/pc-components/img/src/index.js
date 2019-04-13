@@ -14,14 +14,14 @@ export default {
      */
     boxWidth: {
       type: String,
-      default: '100px'
+      default: '150px'
     },
     /**
      * 盒子高度
      */
     boxHeight: {
       type: String,
-      default: '100px'
+      default: '150px'
     }
   },
   data () {
@@ -50,14 +50,10 @@ export default {
   },
   watch: {
     src (newVal) {
-      if (!newVal) {
-        this.imgSrc = defaultImg
-      }
+      this.imgSrc = newVal || defaultImg
     }
   },
   created () {
-    if (!this.src) {
-      this.imgSrc = defaultImg
-    }
+    this.imgSrc = this.src || defaultImg
   }
 }

@@ -10,8 +10,19 @@
     overflow hidden
     border 1px dashed #999
     border-radius 4px
-    background-image #fff
+    background-color #fff
     cursor pointer
+
+    &__operation-box
+      position absolute
+      right 5px
+      bottom 5px
+
+  &__original-img-box
+    position relative
+    margin auto
+    height 100%
+    width 100%
 
   &__original-img
     position absolute
@@ -35,8 +46,16 @@
 
 <template>
   <div class="pc-img">
-    <div class="pc-img__box" :style="{width: boxWidth, height: boxHeight}" @click="dialogVisible = true, imgWidth = 60">
-      <img class="pc-img__original-img" :src="imgSrc">
+    <div class="pc-img__box" :style="{width: boxWidth, height: boxHeight}">
+      <div class="pc-img__original-img-box" :style="{width: `${imgWidth}%`, transform: `rotate(${rotate}deg)`}"  @click="dialogVisible = true, imgWidth = 60">
+        <img class="pc-img__original-img" :src="imgSrc">
+      </div>
+      <el-button-group class="pc-img__box__operation-box">
+        <el-button icon="el-icon-search" size="mini" circle @click="dialogVisible = true, imgWidth = 60"></el-button>
+        <el-button icon="el-icon-zoom-in" size="mini" circle @click="imgWidth += 5"></el-button>
+        <el-button icon="el-icon-zoom-out" size="mini" circle @click="imgWidth -= 5"></el-button>
+        <el-button icon="el-icon-refresh" size="mini" circle @click="rotate += 90"></el-button>
+      </el-button-group>
     </div>
     <el-dialog
       append-to-body
