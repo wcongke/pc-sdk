@@ -20,6 +20,8 @@
     <el-upload
       class="pc-upload__input"
       :action="action"
+      :headers="headers"
+      :data="data"
       name="file"
       :show-file-list="false"
       :before-upload="beforeUpload"
@@ -61,9 +63,25 @@ export default {
     },
     /**
      * 上传地址
-     * @type {String}
      */
-    action: '',
+    action: {
+      type: String,
+      default: ''
+    },
+    /**
+     * 设置上传的请求头部
+     */
+    headers: {
+      type: Object,
+      default: () => ({})
+    },
+    /**
+     * 上传时附带的额外参数
+     */
+    data: {
+      type: Object,
+      default: () => ({})
+    },
     /**
      * 文件大小尺寸
      * @type {Int}

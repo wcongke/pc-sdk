@@ -12,6 +12,8 @@
       class="upload-img__uploader"
       drag
       :action="action"
+      :headers="headers"
+      :data="data"
       v-bind:show-file-list="false"
       v-bind:before-upload="handleBeforeUpload"
       v-bind:on-success="handleSuccess"
@@ -44,6 +46,20 @@ export default {
     action: {
       type: String,
       default: ''
+    },
+    /**
+     * 设置上传的请求头部
+     */
+    headers: {
+      type: Object,
+      default: () => ({})
+    },
+    /**
+     * 上传时附带的额外参数
+     */
+    data: {
+      type: Object,
+      default: () => ({})
     },
     /**
      * tip

@@ -51,6 +51,8 @@
       multiple
       :limit="limit"
       :action="action"
+      :headers="headers"
+      :data="data"
       :show-file-list="false"
       :on-exceed="handleExceed"
       :before-upload="beforeUpload"
@@ -106,6 +108,20 @@ export default {
     action: {
       type: String,
       default: ''
+    },
+    /**
+     * 设置上传的请求头部
+     */
+    headers: {
+      type: Object,
+      default: () => ({})
+    },
+    /**
+     * 上传时附带的额外参数
+     */
+    data: {
+      type: Object,
+      default: () => ({})
     },
     /**
      * 文件数量限制
