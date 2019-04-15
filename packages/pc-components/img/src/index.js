@@ -48,12 +48,33 @@ export default {
       imgSrc: defaultImg
     }
   },
+  methods: {
+    /**
+     * 关闭图片对话框
+     */
+    closePcImgDialog () {
+      if (this.$refs.pcImgDialog) {
+        this.dialogVisible = false
+        document.body.removeChild(this.$refs.pcImgDialog)
+      }
+    }
+  },
   watch: {
     src (newVal) {
       this.imgSrc = newVal || defaultImg
+    },
+    dialogVisible (val) {
+      if (val) {
+        document.body.appendChild(this.$refs.pcImgDialog)
+      }
     }
   },
   created () {
     this.imgSrc = this.src || defaultImg
+  },
+  destroyed () {
+    if (this.$refs.pcImgDialog) {
+      document.body.removeChild(this.$refs.pcImgDialog)
+    }
   }
 }

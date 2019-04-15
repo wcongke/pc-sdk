@@ -18,7 +18,14 @@
       right 5px
       bottom 5px
 
-  &__original-img-box
+  &__original-img-box-1
+    position relative
+    width 100%
+    height 100%
+    overflow-x auto
+    overflow-y auto
+  
+  &__original-img-box-2
     position relative
     margin auto
     height 100%
@@ -32,61 +39,85 @@
     top 50%
 
   &__dialog
+    position fixed
+    left 0
+    top 0
+    right 0
+    bottom 0
+    z-index 9999
 
-    &__img-box
-      max-height 400px
-      overflow hidden
+    &__modal
+      position absolute
+      width 100%
+      height 100%
+      left 0
+      top 0
+      background #000
+      opacity .5
+      z-index 9995
+
+    &__img-box-1
+      position relative
+      width 100%
+      height 100%
       overflow-x auto
       overflow-y auto
-      text-align center
+    
+    &__img-box-2
+      position relative
+      margin auto
+      height 100%
+      width 100%
+      z-index 9996
+
+    &__img
+      position absolute
+      left 50%
+      top 50%
+      width 100%
+      box-shadow 0 0 10px 5px rgba(0, 0, 0, 0.2)
+      transform translate(-50%, -50%)
+      padding 20px
+      background-color #fff
 
     &__operation-box
-      text-align center
+      position absolute
+      left 50%
+      bottom 40px
+      transform translateX(-50%)
+      z-index 9997
 </style>
 
 <template>
   <div class="pc-img">
     <div class="pc-img__box" :style="{width: boxWidth, height: boxHeight}">
-      <div class="pc-img__original-img-box" :style="{width: `${imgWidth}%`, transform: `rotate(${rotate}deg)`}"  @click="dialogVisible = true, imgWidth = 60">
-        <img class="pc-img__original-img" :src="imgSrc">
+      <div class="pc-img__original-img-box-1">
+        <div class="pc-img__original-img-box-2" :style="{width: `${imgWidth}%`, transform: `rotate(${rotate}deg)`}"  @click="dialogVisible = true, imgWidth = 60">
+          <img class="pc-img__original-img" :src="imgSrc">
+        </div>
       </div>
       <el-button-group class="pc-img__box__operation-box">
-        <el-button icon="el-icon-search" size="mini" circle @click="dialogVisible = true, imgWidth = 60"></el-button>
         <el-button icon="el-icon-zoom-in" size="mini" circle @click="imgWidth += 5"></el-button>
         <el-button icon="el-icon-zoom-out" size="mini" circle @click="imgWidth -= 5"></el-button>
         <el-button icon="el-icon-refresh" size="mini" circle @click="rotate += 90"></el-button>
+        <el-button icon="el-icon-search" size="mini" circle @click="dialogVisible = true, imgWidth = 60"></el-button>
       </el-button-group>
     </div>
-    <el-dialog
-      append-to-body
-      :visible.sync="dialogVisible"
-      width="80%"
-      :close-on-click-modal="true"
-      :close-on-press-escape="false">
-      <div class="pc-img__dialog">
-        <el-row>
-          <el-col :span="24">
-            <div class="pc-img__dialog__operation-box">
-              <el-button-group>
-                <el-button icon="el-icon-zoom-in" @click="imgWidth += 5"></el-button>
-                <el-button icon="el-icon-zoom-out" @click="imgWidth -= 5"></el-button>
-                <el-button icon="el-icon-refresh" @click="rotate += 90"></el-button>
-              </el-button-group>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="24">
-            <div class="pc-img__dialog__img-box">
-              <img class="pc-img__dialog__img" :src="imgSrc" :style="{width: `${imgWidth}%`, transform: `rotate(${rotate}deg)`}">
-            </div>
-          </el-col>
-        </el-row>
+
+    <div class="pc-img__dialog" v-show="dialogVisible" ref="pcImgDialog">
+      <div class="pc-img__dialog__img-box-1">
+        <div class="pc-img__dialog__img-box-2" :style="{transform: `rotate(${rotate}deg)`}">
+          <img class="pc-img__dialog__img" :style="{width: `${imgWidth}%`}" :src="imgSrc">
+        </div>
       </div>
-      <span slot="footer">
-        <el-button @click="dialogVisible = false">关闭</el-button>
-      </span>
-    </el-dialog>
+      <el-button-group class="pc-img__dialog__operation-box">
+        <el-button icon="el-icon-zoom-in" circle @click="imgWidth += 5"></el-button>
+        <el-button icon="el-icon-zoom-out" circle @click="imgWidth -= 5"></el-button>
+        <el-button icon="el-icon-refresh" circle @click="rotate += 90"></el-button>
+        <el-button icon="el-icon-close" circle @click="closePcImgDialog()"></el-button>
+      </el-button-group>
+      <div class="pc-img__dialog__modal" @click="closePcImgDialog()"></div>
+    </div>
   </div>
 </template>
 
