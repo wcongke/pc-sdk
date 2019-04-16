@@ -28,7 +28,16 @@
     <el-row class="mt10">
       <el-col :span="24">
         <div class="components-img__container">
-          <pc-img box-width="400px" box-height="300px" :src="img"/>
+          <el-row>
+            <el-col :span="24">
+              <pc-img box-width="400px" box-height="300px" :show-box-operation="false" :src="img"/>
+            </el-col>
+          </el-row>
+          <el-row class="mt10">
+            <el-col :span="24">
+              <pc-img box-width="240px" box-height="180px" :src="img"/>
+            </el-col>
+          </el-row>
         </div>
       </el-col>
     </el-row>

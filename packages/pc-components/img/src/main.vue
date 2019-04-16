@@ -96,7 +96,7 @@
           <img class="pc-img__original-img" :src="imgSrc">
         </div>
       </div>
-      <el-button-group class="pc-img__box__operation-box">
+      <el-button-group class="pc-img__box__operation-box" v-if="showBoxOperation">
         <el-button icon="el-icon-zoom-in" size="mini" circle @click="imgWidth += 5"></el-button>
         <el-button icon="el-icon-zoom-out" size="mini" circle @click="imgWidth -= 5"></el-button>
         <el-button icon="el-icon-refresh" size="mini" circle @click="rotate += 90"></el-button>

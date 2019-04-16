@@ -20,6 +20,11 @@
   &__img-item
     position relative
     list-style-type none
+    display inline-block
+    margin-bottom 20px
+
+    &+&
+      margin-left 20px
 
     &--del
       position absolute
@@ -66,17 +71,23 @@
           v-for="(item, index) in fileList"
           :key="index">
         <i class="pc-upload-img-batch__img-item--del" @click="del(index)">&#215;</i>
-        <img
+        <pc-img :src="item" :box-width="imgWidth" :box-height="imgHeight" :show-box-operation="showBoxOperation"></pc-img>
+        <!-- <img
           class="pc-upload-img-batch__img"
-          :src="item">
+          :src="item"> -->
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import PcImg from '../../img/src/main.vue'
+
 export default {
   name: 'pc-upload-img-batch',
+  components: {
+    PcImg
+  },
   props: {
     /**
       * 默认值
@@ -124,6 +135,13 @@ export default {
       default: () => ({})
     },
     /**
+     * 返回参数目标属性
+     */
+    responseAttr: {
+      type: String,
+      default: ''
+    },
+    /**
      * 文件数量限制
      * @type {String}
      */
@@ -162,6 +180,30 @@ export default {
     imgListWidth: {
       type: String,
       default: '400px'
+    },
+    /**
+     * 图片宽度
+     * @type {String}
+     */
+    imgWidth: {
+      type: String,
+      default: '200px'
+    },
+    /**
+     * 图片高度
+     * @type {String}
+     */
+    imgHeight: {
+      type: String,
+      default: '200px'
+    },
+    /**
+     * 是否显示图片操作框
+     * @type {String}
+     */
+    showBoxOperation: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -218,7 +260,7 @@ export default {
      * @param {Object} response - response
      */
     handleSuccess (response, file, fileList) {
-      this.fileList.push(response.data)
+      this.fileList.push(response[this.responseAttr])
 
       this.$message({
         type: 'success',

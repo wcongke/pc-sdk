@@ -62,6 +62,13 @@ export default {
       default: () => ({})
     },
     /**
+     * 返回参数目标属性
+     */
+    responseAttr: {
+      type: String,
+      default: ''
+    },
+    /**
      * tip
      */
     tip: {
@@ -114,7 +121,7 @@ export default {
      * @param {fileList}
      */
     handleSuccess (response, file, fileList) {
-      this.img = response.data
+      this.img = response[this.responseAttr]
       this.onProgress = false
     }
   },

@@ -22,6 +22,13 @@ export default {
     boxHeight: {
       type: String,
       default: '150px'
+    },
+    /**
+     * 是否显示盒子操作框
+     */
+    showBoxOperation: {
+      type: Boolean,
+      default: true
     }
   },
   data () {

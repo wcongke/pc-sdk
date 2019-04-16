@@ -15,7 +15,31 @@
     </el-row>
     <el-row class="pc__mt10">
       <el-col :span="24">
-        <pc-upload :action="action" :file-type="['image/jpg', 'image/png', 'image/jpeg']" v-model="url"/>
+        <el-form label-width="200px" label-position="left">
+          <el-form-item label="上传地址">
+            <el-input v-model="action"></el-input>
+          </el-form-item>
+          <el-form-item label="token">
+            <el-input v-model="headers.accessToken"></el-input>
+          </el-form-item>
+          <el-form-item label="上传的请求头部">
+            <!-- <el-input v-model="headers"></el-input> -->
+          </el-form-item>
+          <el-form-item label="上传时附带的额外参数">
+            <!-- <el-input v-model="data"></el-input> -->
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
+    <el-row class="pc__mt10">
+      <el-col :span="24">
+        <pc-upload
+          :action="action"
+          :headers="headers"
+          :data="data"
+          response-attr="result"
+          :file-type="['image/jpg', 'image/png', 'image/jpeg']"
+          v-model="url"/>
       </el-col>
     </el-row>
   </div>
@@ -29,7 +53,17 @@ export default {
        * 上传地址
        * @type {String}
        */
-      action: 'http://orange.bananayc.com/honghealthy/file/fileUpload',
+      action: '',
+      /**
+       * 上传的请求头部
+       * @type {Object}
+       */
+      headers: {},
+      /**
+       * 上传时附带的额外参数
+       * @type {Object}
+       */
+      data: {},
       /**
        * url
        * @type {String}

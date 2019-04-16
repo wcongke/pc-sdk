@@ -83,6 +83,13 @@ export default {
       default: () => ({})
     },
     /**
+     * 返回参数目标属性
+     */
+    responseAttr: {
+      type: String,
+      default: ''
+    },
+    /**
      * 文件大小尺寸
      * @type {Int}
      */
@@ -151,7 +158,7 @@ export default {
      * @param {Object} response - response
      */
     handleSuccess (response) {
-      this.fileUrl = response.data
+      this.fileUrl = response[this.responseAttr]
       this.onProgress = false
     }
   },
