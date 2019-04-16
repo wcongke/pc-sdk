@@ -139,7 +139,7 @@ export default {
      */
     responseAttr: {
       type: String,
-      default: ''
+      default: 'data'
     },
     /**
      * 文件数量限制

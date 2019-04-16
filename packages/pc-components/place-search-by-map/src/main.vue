@@ -46,14 +46,7 @@
           value-key="adcode"
           filterable
           @visible-change="districtSearch(amapKey, '中国', 'country', 1)"
-          @change="
-            model.address.city = null,
-            model.address.district = null,
-            model.address.street = null,
-            model.address.streetAddress = null,
-            model.address.details = null,
-            setMapCenter(model.address.province.center),
-            isInit = false">
+          @change="selectProvince">
           <el-option
             v-for="item in model.options"
             v-bind:key="item.adcode"
@@ -67,13 +60,7 @@
           value-key="adcode"
           filterable
           @visible-change="districtSearch(amapKey, model.address.province ? model.address.province.name : null, 'province', 1)"
-          @change="
-            model.address.district = null,
-            model.address.street = null,
-            model.address.streetAddress = null,
-            model.address.details = null,
-            setMapCenter(model.address.city.center),
-            isInit = false">
+          @change="selectCity">
           <el-option
             v-for="item in model.options"
             v-bind:key="item.adcode"
@@ -87,12 +74,7 @@
           value-key="adcode"
           filterable
           @visible-change="districtSearch(amapKey, model.address.city ? model.address.city.name : null, 'city', 1)"
-          @change="
-            model.address.street = null,
-            model.address.streetAddress = null,
-            model.address.details = null
-            setMapCenter(model.address.district.center),
-            isInit = false">
+          @change="selectDistrict">
           <el-option
             v-for="item in model.options"
             v-bind:key="item.adcode"

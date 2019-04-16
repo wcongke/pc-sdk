@@ -58,12 +58,57 @@ export default {
       if (!amapKey) {
         global.console.error('no amapKey')
         return
+      } else if (!keyword) {
+        global.console.error('no keyword')
+        return
+      } else if (!level) {
+        global.console.error('no level')
+        return
+      } else if (!subdistrict) {
+        global.console.error('no subdistrict')
+        return
       }
 
       AMAP.districtSearch(amapKey, keyword, level, subdistrict)
         .then((res) => {
           this.options = res[0].districtList
         })
+    },
+    /**
+     * 选择省
+     * @param {Object} val -选中的省
+     */
+    selectProvince (val) {
+      this.district.province = {
+        adcode: val.adcode,
+        name: val.name
+      }
+      this.district.city = null
+      this.district.district = null
+      this.isInit = false
+    },
+    /**
+     * 选择市
+     * @param {Object} val -选中的省
+     */
+    selectCity (val) {
+      this.district.city = {
+        adcode: val.adcode,
+        name: val.name
+      }
+      this.district.district = null
+      this.isInit = false
+    },
+    /**
+     * 选择区
+     * @param {Object} val -选中的省
+     */
+    selectDistrict (val) {
+      this.district.district = {
+        adcode: val.adcode,
+        name: val.name
+      }
+      this.isInit = false
     }
   },
   watch: {

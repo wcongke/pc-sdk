@@ -18,7 +18,7 @@
       v-model="district.province"
       value-key="adcode"
       @visible-change="districtSearch(amapKey, '中国', 'country', 1)"
-      @change="district.city = null, district.district = null, isInit = false">
+      @change="selectProvince">
       <el-option
         v-for="item in options"
         v-bind:key="item.adcode"
@@ -30,8 +30,8 @@
       placeholder="请选择"
       v-model="district.city"
       value-key="adcode"
-      @visible-change="districtSearch(amapKey, district.province.name, 'province', 1)"
-      @change="district.district = null, isInit = false">
+      @visible-change="districtSearch(amapKey, district.province ? district.province.name : null, 'province', 1)"
+      @change="selectCity">
       <el-option
         v-for="item in options"
         v-bind:key="item.adcode"
@@ -43,8 +43,8 @@
       placeholder="请选择"
       v-model="district.district"
       value-key="adcode"
-      @visible-change="districtSearch(amapKey, district.city.name, 'city', 1)"
-      @change="isInit = false">
+      @visible-change="districtSearch(amapKey, district.city ? district.city.name : null, 'city', 1)"
+      @change="selectDistrict">
       <el-option
         v-for="item in options"
         v-bind:key="item.adcode"

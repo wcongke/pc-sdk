@@ -101,10 +101,17 @@ export default {
      * @param {Int} subdistrict - 期望返回多少级下级行政区信息(可选值：0、1、2、3)
      */
     districtSearch (amapKey, keyword, level, subdistrict) {
-      if (!keyword) return
-
       if (!amapKey) {
         global.console.error('no amapKey')
+        return
+      } else if (!keyword) {
+        global.console.error('no keyword')
+        return
+      } else if (!level) {
+        global.console.error('no level')
+        return
+      } else if (!subdistrict) {
+        global.console.error('no subdistrict')
         return
       }
 
@@ -114,15 +121,72 @@ export default {
         })
     },
     /**
+     * 选择省
+     * @param {Object} val -选中的省
+     */
+    selectProvince (val) {
+      this.model.address.province = {
+        adcode: val.adcode,
+        name: val.name
+      }
+
+      this.model.address.city = null
+      this.model.address.district = null
+      this.model.address.street = null
+      this.model.address.streetAddress = null
+      this.model.address.details = null
+      this.setMapCenter(val.center)
+      this.model.isInit = false
+    },
+    /**
+     * 选择市
+     * @param {Object} val -选中的省
+     */
+    selectCity (val) {
+      this.model.address.city = {
+        adcode: val.adcode,
+        name: val.name
+      }
+      this.model.address.district = null
+      this.model.address.street = null
+      this.model.address.streetAddress = null
+      this.model.address.details = null
+      this.setMapCenter(val.center)
+      this.model.isInit = false
+    },
+    /**
+     * 选择区
+     * @param {Object} val -选中的省
+     */
+    selectDistrict (val) {
+      this.model.address.district = {
+        adcode: val.adcode,
+        name: val.name
+      }
+      this.model.address.street = null
+      this.model.address.streetAddress = null
+      this.model.address.details = null
+      this.setMapCenter(val.center)
+      this.model.isInit = false
+    },
+    /**
      * 街道搜索
      * @param {String} keyword -关键词
      * @param {Function} callback -回调
      */
     streetSearch (keyword, callback) {
-      if (!keyword || !this.model.address.district) return
-
-      if (!keyword) {
+      if (!this.model.address.province) {
+        this.$message.error('选择省')
+        return
+      } else if (!this.model.address.city) {
+        this.$message.error('选择市')
+        return
+      } else if (!this.model.address.district) {
+        this.$message.error('选择区')
+        return
+      } else if (!keyword) {
         this.$message.error('请输入地址')
+        return
       }
 
       this.placeSearch(this.amapKey, keyword, this.model.address.district.adcode).then((res) => {

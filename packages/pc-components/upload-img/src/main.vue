@@ -66,7 +66,7 @@ export default {
      */
     responseAttr: {
       type: String,
-      default: ''
+      default: 'data'
     },
     /**
      * tip

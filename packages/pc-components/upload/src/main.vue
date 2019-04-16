@@ -87,7 +87,7 @@ export default {
      */
     responseAttr: {
       type: String,
-      default: ''
+      default: 'data'
     },
     /**
      * 文件大小尺寸
