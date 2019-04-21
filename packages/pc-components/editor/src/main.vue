@@ -22,6 +22,8 @@
       class="pc-editor__uploader"
       drag
       :action="action"
+      :headers="headers"
+      :data="data"
       v-bind:show-file-list="false"
       v-bind:before-upload="handleBeforeUpload"
       v-bind:on-success="handleSuccess"
@@ -49,7 +51,28 @@ export default {
      * 上传地址
      * @type {String}
      */
-    action: ''
+    action: '',
+    /**
+     * 设置上传的请求头部
+     */
+    headers: {
+      type: Object,
+      default: () => ({})
+    },
+    /**
+     * 上传时附带的额外参数
+     */
+    data: {
+      type: Object,
+      default: () => ({})
+    },
+    /**
+     * 返回参数目标属性
+     */
+    responseAttr: {
+      type: String,
+      default: 'data'
+    },
   },
   components: {
     quillEditor
@@ -103,7 +126,7 @@ export default {
      */
     handleSuccess (response, file, fileList) {
       // 文件地址
-      let url = response.data
+      let url = response[this.responseAttr]
 
       if (!url) {
         this.$message.error('插入图片失败')
