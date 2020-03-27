@@ -235,7 +235,25 @@ export default {
     value: {
       deep: true,
       handler (newVal) {
-        if (!newVal || (newVal && !newVal.district) || !this.model.isInit) return
+        if (!newVal || !newVal.hasOwnProperty('streetAddress')) {
+          this.model.address = {
+            // 省
+            province: null,
+            // 市
+            city: null,
+            // 区域（区、县、镇...）
+            district: null,
+            // 街道
+            street: null,
+            // 街道名称
+            streetAddress: null,
+            // 详细地址
+            details: null
+          }
+
+          return
+        }
+        // if (!newVal || (newVal && !newVal.district) || !this.model.isInit) return
 
         methods.merge(this.model.address, newVal)
         this.districtSearch(this.amapKey, '中国', 'country', 1)
