@@ -46,7 +46,8 @@
           value-key="adcode"
           filterable
           @visible-change="districtSearch(amapKey, '中国', 'country', 1)"
-          @change="selectProvince">
+          @change="selectProvince"
+          :disabled="model.disabled">
           <el-option
             v-for="item in model.options"
             v-bind:key="item.adcode"
@@ -60,7 +61,8 @@
           value-key="adcode"
           filterable
           @visible-change="districtSearch(amapKey, model.address.province ? model.address.province.name : null, 'province', 1)"
-          @change="selectCity">
+          @change="selectCity"
+          :disabled="model.disabled">
           <el-option
             v-for="item in model.options"
             v-bind:key="item.adcode"
@@ -74,7 +76,8 @@
           value-key="adcode"
           filterable
           @visible-change="districtSearch(amapKey, model.address.city ? model.address.city.name : null, 'city', 1)"
-          @change="selectDistrict">
+          @change="selectDistrict"
+          :disabled="model.disabled">
           <el-option
             v-for="item in model.options"
             v-bind:key="item.adcode"
@@ -89,7 +92,8 @@
           value-key="address"
           v-model="model.address.streetAddress"
           :fetch-suggestions="streetSearch"
-          @select="selectStreet">
+          @select="selectStreet"
+          :disabled="model.disabled">
           <template slot-scope="{ item }">
             <p>{{item.name}}</p>
             <p class="place-search-by-map__item-address">{{item.address}}</p>
@@ -97,7 +101,7 @@
         </el-autocomplete>
       </div>
     </div>
-    <el-input class="place-search-by-map__details" v-model="model.address.details" v-if="hadDetails" placeholder="请输入门牌号"></el-input>
+    <el-input class="place-search-by-map__details" v-model="model.address.details" v-if="hadDetails" placeholder="请输入门牌号" :disabled="model.disabled" @focus="model.entering = true" @blur="model.entering = false"></el-input>
     <div class="place-search-by-map__map" ref="map"></div>
   </div>
 </template>

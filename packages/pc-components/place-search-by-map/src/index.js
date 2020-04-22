@@ -57,10 +57,13 @@ export default {
     setMapCenter (center) {
       if (!center) return
 
+      this.model.disabled = true
       this.clearMarker()
       setTimeout(() => {
         this.model.map.setCenter(center)
         this.model.map.setFitView()
+
+        this.model.disabled = false
       }, 500)
     },
     /**
@@ -118,6 +121,7 @@ export default {
       AMAP.districtSearch(amapKey, keyword, level, subdistrict)
         .then((res) => {
           this.model.options = res[0].districtList
+          this.$forceUpdate()
         })
     },
     /**
@@ -125,49 +129,49 @@ export default {
      * @param {Object} val -选中的省
      */
     selectProvince (val) {
+      this.model.entering = true
       this.model.address.province = {
         adcode: val.adcode,
         name: val.name
       }
 
-      this.model.address.city = null
-      this.model.address.district = null
-      this.model.address.street = null
-      this.model.address.streetAddress = null
-      this.model.address.details = null
+      this.model.address.city = {}
+      this.model.address.district = {}
+      this.model.address.street = {}
+      this.model.address.streetAddress = ''
+      this.model.address.details = ''
       this.setMapCenter(val.center)
-      this.model.isInit = false
     },
     /**
      * 选择市
      * @param {Object} val -选中的省
      */
     selectCity (val) {
+      this.model.entering = true
       this.model.address.city = {
         adcode: val.adcode,
         name: val.name
       }
-      this.model.address.district = null
-      this.model.address.street = null
-      this.model.address.streetAddress = null
-      this.model.address.details = null
+      this.model.address.district = {}
+      this.model.address.street = {}
+      this.model.address.streetAddress = ''
+      this.model.address.details = ''
       this.setMapCenter(val.center)
-      this.model.isInit = false
     },
     /**
      * 选择区
      * @param {Object} val -选中的省
      */
     selectDistrict (val) {
+      this.model.entering = true
       this.model.address.district = {
         adcode: val.adcode,
         name: val.name
       }
-      this.model.address.street = null
-      this.model.address.streetAddress = null
-      this.model.address.details = null
+      this.model.address.street = {}
+      this.model.address.streetAddress = ''
+      this.model.address.details = ''
       this.setMapCenter(val.center)
-      this.model.isInit = false
     },
     /**
      * 街道搜索
@@ -175,6 +179,7 @@ export default {
      * @param {Function} callback -回调
      */
     streetSearch (keyword, callback) {
+      this.model.entering = true
       if (!this.model.address.province) {
         this.$message.error('选择省')
         return
@@ -205,6 +210,7 @@ export default {
 
       this.model.address.street = street
       this.model.address.streetAddress = street.address
+      this.model.entering = false
     },
     /**
      * 搜索地址
@@ -235,25 +241,10 @@ export default {
     value: {
       deep: true,
       handler (newVal) {
-        if (!newVal || !newVal.hasOwnProperty('streetAddress')) {
-          this.model.address = {
-            // 省
-            province: null,
-            // 市
-            city: null,
-            // 区域（区、县、镇...）
-            district: null,
-            // 街道
-            street: null,
-            // 街道名称
-            streetAddress: null,
-            // 详细地址
-            details: null
-          }
-
-          return
-        }
-        // if (!newVal || (newVal && !newVal.district) || !this.model.isInit) return
+        // 如果正在输入就return
+        if (this.model.entering) return
+        // 如果street没有address就return
+        if (!newVal || !newVal.streetAddress || !newVal.street.hasOwnProperty('address')) return
 
         methods.merge(this.model.address, newVal)
         this.districtSearch(this.amapKey, '中国', 'country', 1)
@@ -271,7 +262,6 @@ export default {
     'model.address': {
       deep: true,
       handler (newVal) {
-        this.model.isInit = false
         this.$emit('input', newVal)
       }
     }

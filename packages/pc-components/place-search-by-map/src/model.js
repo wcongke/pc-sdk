@@ -6,28 +6,23 @@ export default (data = {}) => ({
    */
   address: {
     // 省
-    province: null,
+    province: {},
     // 市
-    city: null,
+    city: {},
     // 区域（区、县、镇...）
-    district: null,
+    district: {},
     // 街道
-    street: null,
+    street: {},
     // 街道名称
-    streetAddress: null,
+    streetAddress: '',
     // 详细地址
-    details: null
+    details: ''
   },
   /**
    * 地址选项
    * @type {Array}
    */
   options: [],
-  /**
-   * 初始状态
-   * @type {Boolean}
-   */
-  isInit: true,
   /**
    * 地图
    * @type {Object}
@@ -37,5 +32,15 @@ export default (data = {}) => ({
    * 标记点
    * @type {Object}
    */
-  marker: null
+  marker: null,
+  /**
+   * 禁用
+   * @type {Boolean}
+   */
+  disabled: false,
+  /**
+   * 输入中
+   * @type {Boolean}
+   */
+  entering: false
 })
