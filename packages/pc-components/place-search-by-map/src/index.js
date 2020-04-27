@@ -228,10 +228,49 @@ export default {
           resolve(res)
         }, reject)
       })
+    },
+    /**
+     * 监听数据和初始化数据的处理
+     * @param {Object} data
+     */
+    watchValueHandle (data) {
+      if (data === null) {
+        this.model.address = {
+          // 省
+          province: {},
+          // 市
+          city: {},
+          // 区域（区、县、镇...）
+          district: {},
+          // 街道
+          street: {},
+          // 街道名称
+          streetAddress: '',
+          // 详细地址
+          details: ''
+        }
+  
+        return
+      }
+  
+      // 如果正在输入就return
+      if (this.model.entering) return
+      // 如果street没有address就return
+      if (!data || !data.streetAddress || !data.street.hasOwnProperty('address')) return
+  
+      methods.merge(this.model.address, data)
+      this.districtSearch(this.amapKey, '中国', 'country', 1)
+      this.districtSearch(this.amapKey, data.province.name, 'province', 1)
+      this.districtSearch(this.amapKey, data.city.name, 'city', 1)
+      this.model.address.streetAddress = data.street.address
+      this.setMapCenter(data.street.location)
+      this.addMarker(this.amapKey, data.street.location.lng, data.street.location.lat)
     }
   },
   created () {
     this.initAmap(this.amapKey)
+
+    this.watchValueHandle(this.value)
   },
   watch: {
     /**
@@ -241,18 +280,7 @@ export default {
     value: {
       deep: true,
       handler (newVal) {
-        // 如果正在输入就return
-        if (this.model.entering) return
-        // 如果street没有address就return
-        if (!newVal || !newVal.streetAddress || !newVal.street.hasOwnProperty('address')) return
-
-        methods.merge(this.model.address, newVal)
-        this.districtSearch(this.amapKey, '中国', 'country', 1)
-        this.districtSearch(this.amapKey, newVal.province.name, 'province', 1)
-        this.districtSearch(this.amapKey, newVal.city.name, 'city', 1)
-        this.model.address.streetAddress = newVal.street.address
-        this.setMapCenter(newVal.street.location)
-        this.addMarker(this.amapKey, newVal.street.location.lng, newVal.street.location.lat)
+        this.watchValueHandle(newVal)
       }
     },
     /**
