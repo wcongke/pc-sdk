@@ -1,5 +1,5 @@
+import AMapLoader from '@amap/amap-jsapi-loader'
 import methods from 'can.base-utils/src/methods'
-import AMAP from 'can.base-utils/tools/amap/index'
 
 import model from './model'
 
@@ -26,6 +26,14 @@ export default {
       default: ''
     },
     /**
+     * 高德版本
+     * @type {String}
+     */
+    amapVersion: {
+      type: String,
+      default: '2.0'
+    },
+    /**
      * 有无详情地址
      * @type {Boolean}
      */
@@ -39,14 +47,15 @@ export default {
      * 初始化地图
      * @function [initAmap]
      * @param {String} amapKey -高德key
+     * @param {String} amapVersion -高德版本
      */
-    initAmap (amapKey) {
-      AMAP.ready(amapKey, (AMap) => {
-        this.model.map = new AMap.Map(this.$refs.map, {
-          resizeEnable: true,
-          center: [120.137, 30.253],
-          zoom: 10
-        })
+    initAmap (amapKey, amapVersion) {
+      AMapLoader.load({
+        key: amapKey,
+        version: amapVersion,
+        plugins: []
+      }).then((AMap) => {
+        this.model.map = new AMap.Map(this.$refs.map)
       })
     },
     /**
@@ -70,19 +79,33 @@ export default {
      * 绘制地图中心点
      * @function [addMarker]
      * @param {String} amapKey -高德key
+     * @param {String} amapVersion -高德版本
      * @param {String} lng -经度
      * @param {String} lat -纬度
      */
-    addMarker (amapKey, lng, lat) {
-      AMAP.ready(amapKey, (AMap) => {
-        this.clearMarker()
+    addMarker (amapKey, amapVersion, lng, lat) {
+      if (this.model.inAddMarker) return
 
-        const marker = this.model.marker = new AMap.Marker({
-          icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
-          position: [lng, lat]
+      return new Promise((resolve) => {
+        this.model.inAddMarker = true
+
+        AMapLoader.load({
+          key: amapKey,
+          version: amapVersion,
+          plugins: ['AMap.Marker']
+        }).then((AMap) => {
+          this.clearMarker()
+  
+          const marker = this.model.marker = new AMap.Marker({
+            icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
+            position: [lng, lat]
+          })
+  
+          this.model.map.add(marker)
+          this.model.map.setFitView()
+
+          resolve('success')
         })
-        marker.setMap(this.model.map)
-        this.model.map.setFitView()
       })
     },
     /**
@@ -99,13 +122,17 @@ export default {
      * 行政区信息信息搜索
      * @function [districtSearch]
      * @param {String} amapKey - 高德key
+     * @param {String} amapVersion -高德版本
      * @param {String} keyword - 搜索关键词
      * @param {String} level - 要查询的关键字对应的行政级别或商圈(可选值：country、province、city、district、biz_area)
      * @param {Int} subdistrict - 期望返回多少级下级行政区信息(可选值：0、1、2、3)
      */
-    districtSearch (amapKey, keyword, level, subdistrict) {
+    districtSearch (amapKey, amapVersion, keyword, level, subdistrict) {
       if (!amapKey) {
         global.console.error('no amapKey')
+        return
+      } else if (!amapVersion) {
+        global.console.error('no amapVersion')
         return
       } else if (!keyword) {
         global.console.error('no keyword')
@@ -118,11 +145,29 @@ export default {
         return
       }
 
-      AMAP.districtSearch(amapKey, keyword, level, subdistrict)
-        .then((res) => {
-          this.model.options = res[0].districtList
-          this.$forceUpdate()
+      AMapLoader.load({
+        key: amapKey,
+        version: amapVersion,
+        plugins: ['AMap.DistrictSearch']
+      }).then((AMap) => {
+        const districtSearch = new AMap.DistrictSearch({
+          level,
+          subdistrict,
+          showbiz: false
         })
+
+        districtSearch.search(keyword, (status, result) => {
+          if (status === 'complete' && result.info === 'OK') {
+            this.model.options = result.districtList[0].districtList
+            this.$forceUpdate()
+          } else {
+            this.$message({
+              type: 'error',
+              message: '获取失败！'
+            })
+          }
+        })
+      })
     },
     /**
      * 选择省
@@ -176,9 +221,8 @@ export default {
     /**
      * 街道搜索
      * @param {String} keyword -关键词
-     * @param {Function} callback -回调
      */
-    streetSearch (keyword, callback) {
+    streetSearch (keyword) {
       this.model.entering = true
       if (!this.model.address.province) {
         this.$message.error('选择省')
@@ -194,8 +238,10 @@ export default {
         return
       }
 
-      this.placeSearch(this.amapKey, keyword, this.model.address.district.adcode).then((res) => {
-        callback(res.pois)
+      this.model.streetLoading = true
+      this.placeSearch(this.amapKey, this.amapVersion, keyword, this.model.address.district.adcode).then((res) => {
+        this.model.streetLoading = false
+        this.model.streetOptions = res.pois
       })
     },
     /**
@@ -203,30 +249,47 @@ export default {
      * @param {String} street -街道
      */
     selectStreet (street) {
-      if (street) {
-        this.setMapCenter(street.location)
-        this.addMarker(this.amapKey, street.location.lng, street.location.lat)
-      }
+      if (!street) return
 
-      this.model.address.street = street
-      this.model.address.streetAddress = street.address
-      this.model.entering = false
+      this.setMapCenter(street.location)
+      this.addMarker(this.amapKey, this.amapVersion, street.location.lng, street.location.lat).then(() => {
+        this.model.address.street = street
+        this.model.address.streetAddress = street.address
+        this.model.entering = false
+        this.model.inAddMarker = false
+      })
     },
     /**
      * 搜索地址
      * @param {String} amapKey - 高德key
+     * @param {String} amapVersion -高德版本
      * @param {String} keyword - 搜索关键词
      * @param {String} adcode - adcode
      */
-    placeSearch (amapKey, keyword, adcode) {
-      return new Promise((resolve, reject) => {
-        AMAP.placeSearch(amapKey, keyword, {
+    placeSearch (amapKey, amapVersion, keyword, adcode) {
+      return new Promise((resolve) => {
+        AMapLoader.load({
+          key: amapKey,
+          version: amapVersion,
+          plugins: ['AMap.PlaceSearch']
+        }).then((AMap) => {
+         const placeSearch = new AMap.PlaceSearch({
           city: adcode,
-          pageIndex: '1',
-          pageSize: '40'
-        }).then((res) => {
-          resolve(res)
-        }, reject)
+          pageIndex: 1,
+          pageSize: 40
+         })
+
+         placeSearch.search(keyword, (status, result) => {
+            if (status === 'complete' && result.info === 'OK') {
+              resolve(result.poiList)
+            } else {
+              this.$message({
+                type: 'error',
+                message: '未搜到匹配的地址'
+              })
+            }
+         })
+        })
       })
     },
     /**
@@ -259,16 +322,16 @@ export default {
       if (!data || !data.streetAddress || !data.street.hasOwnProperty('address')) return
   
       methods.merge(this.model.address, data)
-      this.districtSearch(this.amapKey, '中国', 'country', 1)
-      this.districtSearch(this.amapKey, data.province.name, 'province', 1)
-      this.districtSearch(this.amapKey, data.city.name, 'city', 1)
+      this.districtSearch(this.amapKey, this.amapVersion, '中国', 'country', 1)
+      this.districtSearch(this.amapKey, this.amapVersion, data.province.name, 'province', 1)
+      this.districtSearch(this.amapKey, this.amapVersion, data.city.name, 'city', 1)
       this.model.address.streetAddress = data.street.address
       this.setMapCenter(data.street.location)
-      this.addMarker(this.amapKey, data.street.location.lng, data.street.location.lat)
+      this.addMarker(this.amapKey, this.amapVersion, data.street.location.lng, data.street.location.lat)
     }
   },
   created () {
-    this.initAmap(this.amapKey)
+    this.initAmap(this.amapKey, this.amapVersion)
 
     this.watchValueHandle(this.value)
   },

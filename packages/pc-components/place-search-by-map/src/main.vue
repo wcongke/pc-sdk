@@ -45,7 +45,7 @@
           v-model="model.address.province"
           value-key="adcode"
           filterable
-          @visible-change="districtSearch(amapKey, '中国', 'country', 1)"
+          @visible-change="districtSearch(amapKey, amapVersion, '中国', 'country', 1)"
           @change="selectProvince"
           :disabled="model.disabled">
           <el-option
@@ -60,7 +60,7 @@
           v-model="model.address.city"
           value-key="adcode"
           filterable
-          @visible-change="districtSearch(amapKey, model.address.province ? model.address.province.name : null, 'province', 1)"
+          @visible-change="districtSearch(amapKey, amapVersion, model.address.province ? model.address.province.name : null, 'province', 1)"
           @change="selectCity"
           :disabled="model.disabled">
           <el-option
@@ -75,7 +75,7 @@
           v-model="model.address.district"
           value-key="adcode"
           filterable
-          @visible-change="districtSearch(amapKey, model.address.city ? model.address.city.name : null, 'city', 1)"
+          @visible-change="districtSearch(amapKey, amapVersion, model.address.city ? model.address.city.name : null, 'city', 1)"
           @change="selectDistrict"
           :disabled="model.disabled">
           <el-option
@@ -86,19 +86,25 @@
         </el-select>
       </div>
       <div class="place-search-by-map__address-input--right">
-        <el-autocomplete
+        <el-select
           class="place-search-by-map__input"
-          placeholder="请输入地址"
-          value-key="address"
           v-model="model.address.streetAddress"
-          :fetch-suggestions="streetSearch"
-          @select="selectStreet"
-          :disabled="model.disabled">
-          <template slot-scope="{ item }">
-            <p>{{item.name}}</p>
-            <p class="place-search-by-map__item-address">{{item.address}}</p>
-          </template>
-        </el-autocomplete>
+          value-key="address"
+          filterable
+          remote
+          reserve-keyword
+          placeholder="请输入地址"
+          @change="selectStreet"
+          :disabled="model.disabled"
+          :remote-method="streetSearch"
+          :loading="model.streetLoading">
+          <el-option
+            v-for="item in model.streetOptions"
+            :key="item.id"
+            :label="item.name"
+            :value="item">
+          </el-option>
+        </el-select>
       </div>
     </div>
     <el-input class="place-search-by-map__details" v-model="model.address.details" v-if="hadDetails" placeholder="请输入门牌号" :disabled="model.disabled" @focus="model.entering = true" @blur="model.entering = false"></el-input>

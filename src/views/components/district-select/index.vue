@@ -15,19 +15,19 @@
     </el-row>
     <el-row class="pc__mt10">
       <el-col :span="24">
-        <pc-district-select :amap-key="AMAP_KEY" v-model="district"/>
+        <pc-district-select :amap-key="amapInfo.key" v-model="district"/>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import { AMAP_KEY } from '@/common/amap'
+import amapInfo from '@/common/amap'
 
 export default {
   data () {
     return {
-      AMAP_KEY,
+      amapInfo: amapInfo(),
       /**
        * 行政区域
        * @type {Object}

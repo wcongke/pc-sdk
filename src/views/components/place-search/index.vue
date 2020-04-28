@@ -15,19 +15,19 @@
     </el-row>
     <el-row class="pc__mt10">
       <el-col :span="24">
-        <pc-place-search :amap-key="AMAP_KEY" v-model="place"/>
+        <pc-place-search :amap-key="amapInfo.key" v-model="place"/>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import { AMAP_KEY } from '@/common/amap'
+import amapInfo from '@/common/amap'
 
 export default {
   data () {
     return {
-      AMAP_KEY,
+      amapInfo: amapInfo(),
       /**
        * 行政地址
        * @type {Object}

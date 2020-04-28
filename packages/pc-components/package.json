@@ -1,6 +1,6 @@
 {
   "name": "can.pc-components",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "can.pc-components",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "Vincent Wen",
   "license": "ISC",
   "dependencies": {
+    "@amap/amap-jsapi-loader": "0.0.1",
     "can.base-utils": "0.0.1",
     "quill": "^1.3.6",
     "vue-quill-editor": "^3.0.6"

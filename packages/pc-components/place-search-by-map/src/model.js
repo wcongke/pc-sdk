@@ -24,6 +24,16 @@ export default (data = {}) => ({
    */
   options: [],
   /**
+   * 街道选项
+   * @type {Array}
+   */
+  streetOptions: [],
+  /**
+   * 街道选项
+   * @type {Boolean}
+   */
+  streetLoading: false,
+  /**
    * 地图
    * @type {Object}
    */
@@ -42,5 +52,10 @@ export default (data = {}) => ({
    * 输入中
    * @type {Boolean}
    */
-  entering: false
+  entering: false,
+  /**
+   * 添加坐标中
+   * @type {Boolean}
+   */
+  inAddMarker: false
 })
